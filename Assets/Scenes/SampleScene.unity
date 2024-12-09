@@ -1083,14 +1083,14 @@ MonoBehaviour:
   horizontalBins: 100
   binStepSize: 10
   minimumDistance: 0.05
-  maximumDistance: 1
+  maximumDistance: 0.8
   VibrationFrequency: 125
   VibrationDuration: 0.08
   VibrationAmplitude: 1
   minimumAmplitude: 0.8
   maximumAmplitude: 1
   waveform: 2
-  amplitudeMappingType: 0
+  amplitudeMappingType: 2
   binMappingType: 2
   minimumBins: 20
   maximumBins: 80
@@ -1108,13 +1108,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2571831caea86dd4ab9170ec3902556b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalBins: 50
-  verticalBins: 50
+  TotalBins: 50
   binStepSize: 10
-  horizontalRange: 1.5
-  verticalRange: 1.5
   VibrationFrequency: 100
-  VibrationDuration: 0.01
+  VibrationDuration: 0.02
   VibrationAmplitude: 1
   waveform: 0
   leftHand: {fileID: 1301172546}

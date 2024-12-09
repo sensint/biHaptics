@@ -2,7 +2,7 @@ using System.Collections.Specialized;
 using UnityEngine;
 //OVRPlugin.systemDisplayFrequency = 120.0f;
 
-public class HapticGridController2 : MonoBehaviour
+public class HapticGridControllerTranslation : MonoBehaviour
 {
     /// <summary>
     /// Visuals in Unity Editor
@@ -25,8 +25,8 @@ public class HapticGridController2 : MonoBehaviour
     public float maximumDistance = 1.0f; // Horizontal movement range
 
     [Header("Haptic Settings")]
-    public float VibrationFrequency = 100f; // Frequency of vibration
-    public float VibrationDuration = 0.02f;      // Duration of vibration pulse
+    public float VibrationFrequency = 125f; // Frequency of vibration
+    public float VibrationDuration = 0.04f;      // Duration of vibration pulse
     public float VibrationAmplitude = 1.0f;
     private float distanceBetweenControllers = 0f;
 
@@ -82,7 +82,7 @@ public class HapticGridController2 : MonoBehaviour
     private float vibrationStartTimeRight = 0f;
     private float vibrationStartTimeBoth = 0f;
     private float kMovementThreshold = 0.005f;
-    private float kJitterThreshold = 0.005f;
+    private float kJitterThreshold = 0.01f;
     private float mappedAmplitude = 0.5f;
 
     private void Start()
@@ -90,6 +90,7 @@ public class HapticGridController2 : MonoBehaviour
         // Initialize the last known positions
         if (leftHand != null) leftLastPosition = leftHand.position.x;
         if (rightHand != null) rightLastPosition = rightHand.position.x;
+        lastDistanceBetweenControllersXYZ = distanceBetweenControllersXYZ;
     }
 
     void Update()
@@ -117,7 +118,14 @@ public class HapticGridController2 : MonoBehaviour
         // Check if the controller moved
         CheckLeftControllerMovement();
         CheckRightControllerMovement();
-        //Debug.Log("$Left: {isTriggeredPressedLeft}, isTriggeredPressedRight);
+
+        float netChange = Mathf.Abs(lastDistanceBetweenControllersXYZ.x - distanceBetweenControllersXYZ.x);
+        if (netChange < kJitterThreshold)
+        {
+            StopVibrationBoth(OVRInput.Controller.RTouch);
+            StopVibrationBoth(OVRInput.Controller.LTouch);
+            return;
+        }
 
         // Run MCV
         if (isTriggeredPressedLeft && isTriggeredPressedRight)

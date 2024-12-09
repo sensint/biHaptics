@@ -1,29 +1,24 @@
 using System.Collections.Specialized;
 using UnityEngine;
-//OVRPlugin.systemDisplayFrequency = 120.0f;
 
 public class HapticGridControllerRotation : MonoBehaviour
 {
     [Header("Bin Settings")]
-    [Range(1, 200)] public int horizontalBins = 50; // Slider for horizontal bins
-    [Range(1, 200)] public int verticalBins = 50;   // Slider for vertical bins
+    [Range(1, 200)] public int TotalBins = 50; // Slider for horizontal bins
+    //[Range(1, 200)] public int verticalBins = 50;   // Slider for vertical bins
 
     [Tooltip("Step size for bin numbers")]
     public int binStepSize = 10;
 
     void OnValidate()
     {
-        horizontalBins = Mathf.RoundToInt(horizontalBins / (float)binStepSize) * binStepSize;
-        verticalBins = Mathf.RoundToInt(verticalBins / (float)binStepSize) * binStepSize;
+        TotalBins = Mathf.RoundToInt(TotalBins / (float)binStepSize) * binStepSize;
+        //verticalBins = Mathf.RoundToInt(verticalBins / (float)binStepSize) * binStepSize;
     }
 
-    [Header("Movement Range")]
-    public float horizontalRange = 1.5f; // Horizontal movement range
-    public float verticalRange = 1.5f;   // Vertical movement range
-
     [Header("Haptic Settings")]
-    public float VibrationFrequency = 100f; // Frequency of vibration
-    public float VibrationDuration = 0.02f;      // Duration of vibration pulse
+    public float VibrationFrequency = 125f; // Frequency of vibration
+    public float VibrationDuration = 0.04f;      // Duration of vibration pulse
     public float VibrationAmplitude = 1.0f;
     private float minimumRotation = -180f;
     private float maximumRotation = 180f;
@@ -36,62 +31,98 @@ public class HapticGridControllerRotation : MonoBehaviour
     [Header("Controllers Setting")]
     public Transform leftHand;  // Reference to the left hand
     public Transform rightHand; // Reference to the right hand
+
+    /// <summary>
+    /// Detecting Movement of Hand Controllers
+    /// </summary>
     private Quaternion lastLeftRotation;
     private Quaternion lastRightRotation;
+    private Quaternion relativeRotation;
     private bool leftControllerIsRotated = false;
     private bool rightControllerIsRotated = false;
     private float leftAngleDifference = 0f;
     private float rightAngleDifference = 0f;
+    private float lastRMSAngle = 0f;
 
-    private bool isHapticsOnL = false; // Haptics state for left controller
-    private bool isHapticsOnR = false; // Haptics state for right controller
+    /// <summary>
+    /// Haptic State for Controllers
+    /// </summary>
+    private bool isTriggerPressedLeft = false;
+    private bool isTriggerPressedRight = false;
+    private bool isVibratingLeft = false;
+    private bool isVibratingRight = false;
+    private bool isVibratingBoth = false;
 
     private Vector3 originalCubePosition;
-    private Vector3 distanceBetweenControllersXYZ;
-    private Vector3 lastDistanceBetweenControllersXYZ;
-    private Quaternion relativeRotation;
 
+    /// <summary>
+    /// Distance between Controllers + Mapping Details
+    /// </summary>
     private int mappedBinId = 0;
     private int lastBinId = 0;
     private float vibrationStartTimeLeft = 0f;
     private float vibrationStartTimeRight = 0f;
     private float vibrationStartTimeBoth = 0f;
     private float rotationThreshold = 1.0f;
-    private bool isVibratingLeft = false;
-    private bool isVibratingRight = false;
-    private bool isVibratingBoth = false;
+    private float kJitterThreshold = 1.0f;
+
+    void Start()
+    {
+        lastRMSAngle = rmsAngle;
+    }
 
     void Update()
     {
         // Continuous Distance Measurement
         GetCoordinates();
         rmsAngle = Mathf.Clamp(rmsAngle, minimumRotation, maximumRotation);
-        mappedBinId = Mathf.RoundToInt(((rmsAngle - minimumRotation) * (horizontalBins - 0) / (maximumRotation - minimumRotation)+minimumRotation));
+        mappedBinId = Mathf.RoundToInt(((rmsAngle - minimumRotation) * (TotalBins - 0) / (maximumRotation - minimumRotation)+minimumRotation));
 
         // Check input for toggling haptics
-        HandleHapticsToggle(OVRInput.Controller.LTouch, ref isHapticsOnL);
-        HandleHapticsToggle(OVRInput.Controller.RTouch, ref isHapticsOnR);
+        HandleHapticsToggle(OVRInput.Controller.LTouch, ref isTriggerPressedLeft);
+        HandleHapticsToggle(OVRInput.Controller.RTouch, ref isTriggerPressedRight);
+
+        float netChange = Mathf.Abs(lastRMSAngle - rmsAngle);
+        if (netChange < kJitterThreshold)
+        {
+            StopVibrationBoth(OVRInput.Controller.RTouch);
+            StopVibrationBoth(OVRInput.Controller.LTouch);
+            return;
+        }
 
         // Run MCV
-        if (isHapticsOnL && isHapticsOnR)
+        if (isTriggerPressedLeft && isTriggerPressedRight)
         {
             MotionCoupledVibrationBoth();
         }
-        else if (isHapticsOnR && !isHapticsOnL)
+        else if (isTriggerPressedRight && !isTriggerPressedLeft)
         {
-            MotionCoupledVibrationRight();
+            if (rightControllerIsRotated)
+            {
+                MotionCoupledVibrationRight();
+            }
         }
-        else if (isHapticsOnL && !isHapticsOnR)
+        else if (isTriggerPressedLeft && !isTriggerPressedRight)
         {
-            MotionCoupledVibrationLeft();
+            if (leftControllerIsRotated)
+            {
+                MotionCoupledVibrationLeft();
+            }
+        }
+        else
+        {
+            isTriggerPressedLeft = false;
+            isTriggerPressedRight = false;
+            StopVibrationBoth(OVRInput.Controller.RTouch);
+            StopVibrationBoth(OVRInput.Controller.LTouch);
         }
     }
 
-    private void HandleHapticsToggle(OVRInput.Controller controller, ref bool isHapticsOn)
+    private void HandleHapticsToggle(OVRInput.Controller controller, ref bool isTriggerPressedLeft)
     {
         // Check if Primary Index Trigger is pressed
-        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, controller)) { isHapticsOn = true; }
-        else { isHapticsOn = false; }
+        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, controller)) { isTriggerPressedLeft = true; }
+        else { isTriggerPressedLeft = false; }
     }
 
     private float ApplyWaveform(float baseAmplitude)
@@ -196,6 +227,7 @@ public class HapticGridControllerRotation : MonoBehaviour
 
             // Update the last bin ID and reset the vibration start time
             lastBinId = mappedBinId;
+            //lastLeftRotation = currentLeftRotation;
         }
 
         // Stop vibration after the pulse duration
@@ -220,6 +252,7 @@ public class HapticGridControllerRotation : MonoBehaviour
 
             // Update the last bin ID and reset the vibration start time
             lastBinId = mappedBinId;
+            //lastRightRotation = currentRightRotation;
         }
 
         // Stop vibration after the pulse duration
