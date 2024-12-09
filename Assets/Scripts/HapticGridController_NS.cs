@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class HapticGridController2 : MonoBehaviour
 {
+    /// <summary>
+    /// Visuals in Unity Editor
+    /// </summary>
     [Header("Bin Settings")]
     [Range(1, 200)] public int horizontalBins = 100; // Slider for horizontal bins
-    [Range(1, 200)] public int verticalBins = 50;   // Slider for vertical bins
+    //[Range(1, 200)] public int verticalBins = 50;   // Slider for vertical bins
 
     [Tooltip("Step size for bin numbers")]
     public int binStepSize = 10;
@@ -14,40 +17,42 @@ public class HapticGridController2 : MonoBehaviour
     void OnValidate()
     {
         horizontalBins = Mathf.RoundToInt(horizontalBins / (float)binStepSize) * binStepSize;
-        verticalBins = Mathf.RoundToInt(verticalBins / (float)binStepSize) * binStepSize;
+        //verticalBins = Mathf.RoundToInt(verticalBins / (float)binStepSize) * binStepSize;
     }
 
     [Header("Movement Range")]
+    public float minimumDistance = 0.05f;
     public float maximumDistance = 1.0f; // Horizontal movement range
-    public float verticalRange = 1.5f;   // Vertical movement range
 
     [Header("Haptic Settings")]
     public float VibrationFrequency = 100f; // Frequency of vibration
     public float VibrationDuration = 0.02f;      // Duration of vibration pulse
     public float VibrationAmplitude = 1.0f;
-    private float minimumDistance = 0.05f;
-    //private float maximumDistance = 1.0f;
     private float distanceBetweenControllers = 0f;
 
     [Header("Amplitude Mapping")]
     public float minimumAmplitude = 0.5f;
     public float maximumAmplitude = 1.0f;
-    public AnimationCurve amplitudeMappingCurve = AnimationCurve.Linear(0, 0.5f, 1, 1.0f);
+    //public AnimationCurve amplitudeMappingCurve = AnimationCurve.Linear(0, 0.5f, 1, 1.0f);
 
     //[Header("Waveform Settings")]
     public enum WaveformType { Sine, Square, Sawtooth, Triangle }
     public WaveformType waveform = WaveformType.Sine;
 
+    //[Header("Mapping Settings")]
     public enum MappingType { Linear, Logarithmic, Exponential }
     public MappingType amplitudeMappingType = MappingType.Linear;
     public MappingType binMappingType = MappingType.Linear;
-
     public int minimumBins = 10;
     public int maximumBins = 200;
 
     [Header("Controllers Setting")]
     public Transform leftHand;  // Reference to the left hand
     public Transform rightHand; // Reference to the right hand
+
+    /// <summary>
+    /// Detecting Movement of Hand Controllers
+    /// </summary>
     private float leftLastPosition;
     private float rightLastPosition;
     private float leftDistanceMoved;
@@ -55,25 +60,30 @@ public class HapticGridController2 : MonoBehaviour
     private bool rightControllerMoved = false;
     private bool leftControllerMoved = false;
 
-    private bool isHapticsOnL = false; // Haptics state for left controller
-    private bool isHapticsOnR = false; // Haptics state for right controller
+    /// <summary>
+    /// Haptic State for Controllers
+    /// </summary>
+    private bool isTriggeredPressedLeft = false;
+    private bool isTriggeredPressedRight = false;
+    private bool isVibratingLeft = false;
+    private bool isVibratingRight = false;
+    private bool isVibratingBoth = false;
 
     private Vector3 originalCubePosition;
+
+    /// <summary>
+    /// Distance between Controllers + Mapping Details
+    /// </summary>
     private Vector3 distanceBetweenControllersXYZ;
     private Vector3 lastDistanceBetweenControllersXYZ;
-    private Quaternion relativeRotation;
-
     private int mappedBinId = 0;
     private int lastBinId = 0;
     private float vibrationStartTimeLeft = 0f;
     private float vibrationStartTimeRight = 0f;
     private float vibrationStartTimeBoth = 0f;
     private float kMovementThreshold = 0.005f;
-    private bool isVibratingLeft = false;
-    private bool isVibratingRight = false;
-    private bool isVibratingBoth = false;
+    private float kJitterThreshold = 0.005f;
     private float mappedAmplitude = 0.5f;
-
 
     private void Start()
     {
@@ -87,62 +97,66 @@ public class HapticGridController2 : MonoBehaviour
         // Continuous Distance Measurement
         GetCoordinates();
         distanceBetweenControllers = Mathf.Clamp(distanceBetweenControllersXYZ.x, minimumDistance, maximumDistance);
-        //Debug.Log(mappedAmplitude);
         //mappedBinId = Mathf.RoundToInt((distanceBetweenControllers - minimumDistance) * (horizontalBins - 0) / (maximumDistance - minimumDistance));
-        ////mappedAmplitude = Mathf.RoundToInt((distanceBetweenControllers - minimumDistance) * (maximumAmplitude - minimumAmplitude) / (maximumDistance - minimumDistance) + minimumAmplitude);
-        //float normalizedDistance = (distanceBetweenControllers - minimumDistance) / (maximumDistance - minimumDistance);
-        //mappedAmplitude = amplitudeMappingCurve.Evaluate(normalizedDistance);
-        //mappedAmplitude = Mathf.Clamp(mappedAmplitude, minimumAmplitude, maximumAmplitude);
 
         // Normalize distance for mapping functions
         float normalizedDistance = (distanceBetweenControllers - minimumDistance) / (maximumDistance - minimumDistance);
 
-        // Choose mapping function for amplitude
+        // Choose mapping function for amplitude and bins
         mappedAmplitude = MapAmplitude(normalizedDistance);
-        mappedAmplitude = Mathf.Clamp(mappedAmplitude, minimumAmplitude, maximumAmplitude);
-
-        // Debugging information
-        Debug.Log($"Amplitude: {mappedAmplitude}, HorizontalBins: {horizontalBins}, MappedBinId: {mappedBinId}");
-
-        // Adjust number of bins dynamically
+        mappedAmplitude = Mathf.Clamp(mappedAmplitude, minimumAmplitude, maximumAmplitude);// Adjust number of bins dynamically
         horizontalBins = Mathf.RoundToInt(MapBins(normalizedDistance));
-        verticalBins = Mathf.RoundToInt(MapBins(normalizedDistance));
-
-        // Map bin ID based on distance and updated bin count
         mappedBinId = Mathf.RoundToInt(normalizedDistance * (horizontalBins - 1));
 
+        //Debug.Log($"Amplitude: {mappedAmplitude}, HorizontalBins: {horizontalBins}, MappedBinId: {mappedBinId}");
+
         // Check input for toggling haptics
-        HandleHapticsToggle(OVRInput.Controller.LTouch, ref isHapticsOnL);
-        HandleHapticsToggle(OVRInput.Controller.RTouch, ref isHapticsOnR);
+        HandleHapticsToggle(OVRInput.Controller.LTouch, ref isTriggeredPressedLeft);
+        HandleHapticsToggle(OVRInput.Controller.RTouch, ref isTriggeredPressedRight);
 
         // Check if the controller moved
         CheckLeftControllerMovement();
         CheckRightControllerMovement();
+        //Debug.Log("$Left: {isTriggeredPressedLeft}, isTriggeredPressedRight);
 
         // Run MCV
-        if (isHapticsOnL && isHapticsOnR)
+        if (isTriggeredPressedLeft && isTriggeredPressedRight)
         {
             MotionCoupledVibrationBoth();
         }
-        else if (isHapticsOnR && !isHapticsOnL)
+        else if (isTriggeredPressedRight && !isTriggeredPressedLeft)
         {
-            MotionCoupledVibrationRight();
+            if (rightControllerMoved)
+            {
+                MotionCoupledVibrationRight();
+            }
+            else { StopVibration(OVRInput.Controller.RTouch); }
         }
-        else if (isHapticsOnL && !isHapticsOnR)
+        else if (isTriggeredPressedLeft && !isTriggeredPressedRight)
         {
-            MotionCoupledVibrationLeft();
+            if (leftControllerMoved)
+            {
+                MotionCoupledVibrationLeft();
+            }
+            else { StopVibration(OVRInput.Controller.LTouch); }
         }
+        else
+        {
+            isTriggeredPressedLeft = false;
+            isTriggeredPressedRight = false;
+            StopVibrationBoth(OVRInput.Controller.RTouch);
+            StopVibrationBoth(OVRInput.Controller.LTouch);
+        }
+
         leftLastPosition = leftHand.position.x;
         rightLastPosition = rightHand.position.x;
-        isHapticsOnL = false;
-        isHapticsOnR = false;
     }
 
-    private void HandleHapticsToggle(OVRInput.Controller controller, ref bool isHapticsOn)
+    private void HandleHapticsToggle(OVRInput.Controller controller, ref bool isTriggerPressed)
     {
         // Check if Primary Index Trigger is pressed
-        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, controller)){isHapticsOn = true;}
-        else{isHapticsOn = false;}
+        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, controller)){ isTriggerPressed = true;}
+        else{ isTriggerPressed = false;}
     }
 
     private float ApplyWaveform(float baseAmplitude)
@@ -198,13 +212,7 @@ public class HapticGridController2 : MonoBehaviour
         Vector3 leftPosition = leftHand.position;
         Vector3 rightPosition = rightHand.position;
         distanceBetweenControllersXYZ = rightPosition - leftPosition;
-
-        // Calculate relative rotation
-        relativeRotation = Quaternion.Inverse(leftHand.rotation) * rightHand.rotation;
-        Vector3 relativeAngles = relativeRotation.eulerAngles;
-
         //Debug.Log($"Distances - X: {distanceBetweenControllersXYZ.x:F4}, Y: {distanceBetweenControllersXYZ.y:F4}, Z: {distanceBetweenControllersXYZ.z:F4}");
-        //Debug.Log($"Relative Angles - Pitch: {relativeAngles.x:F2}, Yaw: {relativeAngles.y:F2}, Roll: {relativeAngles.z:F2}");
     }
 
     private void CheckLeftControllerMovement()
@@ -214,7 +222,6 @@ public class HapticGridController2 : MonoBehaviour
         if (leftDistanceMoved > kMovementThreshold) // Threshold to ignore tiny movements
         {
             leftControllerMoved = true;
-            //Debug.Log($"Left Controller Moved"); 
         }
         else { leftControllerMoved = false; }
     }
@@ -226,7 +233,6 @@ public class HapticGridController2 : MonoBehaviour
         //Debug.Log($"Right Distance: {rightDistanceMoved}");
         if (rightDistanceMoved > kMovementThreshold) // Threshold to ignore tiny movements
         {
-            //Debug.Log($"Right Controller Moved");
             rightControllerMoved = true;
         }
         else { rightControllerMoved = false; }
@@ -249,6 +255,7 @@ public class HapticGridController2 : MonoBehaviour
 
             // Update the last bin ID and reset the vibration start time
             lastBinId = mappedBinId;
+            //leftLastPosition = leftHand.position.x;
             lastDistanceBetweenControllersXYZ = distanceBetweenControllersXYZ;       
         }
 
@@ -261,20 +268,20 @@ public class HapticGridController2 : MonoBehaviour
 
     private void MotionCoupledVibrationRight()
     {
-        if (rightControllerMoved && mappedBinId != lastBinId)
+        if (mappedBinId != lastBinId)
         {
             // Stop any ongoing vibrations
             if (isVibratingRight)
             {
                 StopVibration(OVRInput.Controller.RTouch);
             }
-
             // Start vibration on both controllers
             StartVibration(OVRInput.Controller.RTouch, VibrationFrequency, mappedAmplitude);
 
             // Update the last bin ID and reset the vibration start time
             lastBinId = mappedBinId;
             lastDistanceBetweenControllersXYZ = distanceBetweenControllersXYZ;
+            //rightLastPosition = rightHand.position.x;
         }
 
         // Stop vibration after the pulse duration
@@ -315,14 +322,10 @@ public class HapticGridController2 : MonoBehaviour
     private void StartVibration(OVRInput.Controller controller, float frequency, float amplitude)
     {
         OVRInput.SetControllerVibration(frequency, amplitude, controller);
-        //vibrationStartTime = Time.time;
-        //isVibratingRight = true;
-        //isVibratingLeft = true;
         if (controller == OVRInput.Controller.RTouch) 
         { 
             isVibratingRight = true;
             vibrationStartTimeRight = Time.time;
-
         }
         if (controller == OVRInput.Controller.LTouch) 
         {
@@ -341,10 +344,8 @@ public class HapticGridController2 : MonoBehaviour
     private void StopVibration(OVRInput.Controller controller)
     {
         OVRInput.SetControllerVibration(0, 0, controller);
-        //isVibratingRight = false;
-        //isVibratingLeft = false;
         if (controller == OVRInput.Controller.RTouch) { isVibratingRight = false;}
-        if (controller == OVRInput.Controller.LTouch) { isVibratingLeft = false;}
+        if (controller == OVRInput.Controller.LTouch) { isVibratingLeft = false; Debug.Log("Stop Left"); }
     }
 
     private void StopVibrationBoth(OVRInput.Controller controller)
