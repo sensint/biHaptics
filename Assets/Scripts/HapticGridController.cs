@@ -7,7 +7,7 @@ public class HapticGridController : MonoBehaviour
     [Range(1, 200)] public int verticalBins = 10;   // Slider for vertical bins
 
     [Tooltip("Step size for bin numbers")]
-    public int binStepSize = 5;
+    public int binStepSize = 50;
 
     void OnValidate(){
         horizontalBins = Mathf.RoundToInt(horizontalBins / (float)binStepSize) * binStepSize;
@@ -22,8 +22,8 @@ public class HapticGridController : MonoBehaviour
     public float vibrationFrequency = 100f; // Frequency of vibration
     // public float maxAmplitude = 1.0f;      
     public float pulseDuration = 0.1f;      // Duration of vibration pulse
-    public float horizontalAmplitude = 0.5f;
-    public float verticalAmplitude = 0.7f;
+    private float horizontalAmplitude = 0.1f;
+    private float verticalAmplitude = 0.3f;
 
     //[Header("Waveform Settings")]
     public enum WaveformType{Sine, Square, Sawtooth, Triangle}
@@ -42,8 +42,15 @@ public class HapticGridController : MonoBehaviour
     private float vibrationStartTimeL = 0f; // Start time for left vibration
     private float vibrationStartTimeR = 0f; // Start time for right vibration
 
+    [Header ("Amplitude Control")]
+    [Tooltip("Amplitude adjustment step size")]
+    public float amplitudeStep = 0.1f;
+
+
     void Update()
     {
+        HandleAmplitudeControl();
+        HandleBinControl();
 
         // Handle left controller haptic feedback
         if (leftHand != null)
@@ -57,7 +64,33 @@ public class HapticGridController : MonoBehaviour
             HandleHapticFeedback(rightHand, OVRInput.Controller.RTouch, ref lastHorizontalBinR, ref lastVerticalBinR, ref vibrationStartTimeR, OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch));
         }
     }
+    private void HandleAmplitudeControl(){
+        if (Input.GetKeyDown(KeyCode.UpArrow)){
+            horizontalAmplitude += amplitudeStep;
+            verticalAmplitude += amplitudeStep;
+            Debug.Log($"Increased Amp Hori: {horizontalAmplitude}, verticalAmplitude");
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow)){
+            horizontalAmplitude = Mathf.Max(0, horizontalAmplitude - amplitudeStep);
+            verticalAmplitude = Mathf.Max(0, verticalAmplitude - amplitudeStep);
+            Debug.Log($"Decreased Amp Hori: {horizontalAmplitude}, verticalAmplitude");
+        }
+    }
 
+    private void HandleBinControl(){
+        if(Input.GetKeyDown(KeyCode.A)){
+            horizontalBins = Mathf.Min(200, horizontalBins + binStepSize);
+        }
+        else if (Input.GetKeyDown(KeyCode.D)){
+            horizontalBins = Mathf.Max(0, horizontalBins - binStepSize);
+        }
+        else if (Input.GetKeyDown(KeyCode.W)){
+            verticalBins = Mathf.Max(200, verticalBins + binStepSize);
+        }
+        else if (Input.GetKeyDown(KeyCode.S)){
+            verticalBins = Mathf.Max(0, verticalBins - binStepSize);
+        }
+    }
     private void HandleHapticFeedback(Transform hand, OVRInput.Controller controller, ref int lastHorizontalBin, ref int lastVerticalBin, ref float vibrationStartTime, bool isPressing)
     {
         if (!isPressing){

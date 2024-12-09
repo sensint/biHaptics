@@ -1046,6 +1046,7 @@ GameObject:
   - component: {fileID: 1521516420}
   - component: {fileID: 1521516422}
   - component: {fileID: 1521516423}
+  - component: {fileID: 1521516424}
   m_Layer: 0
   m_Name: HandHaptics
   m_TagString: Untagged
@@ -1075,7 +1076,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1521516418}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 09fa14b54d54e534d8162bd64bc253a3, type: 3}
   m_Name: 
@@ -1116,6 +1117,29 @@ MonoBehaviour:
   waveform: 0
   leftHand: {fileID: 1301172546}
   rightHand: {fileID: 1301172545}
+--- !u!114 &1521516424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521516418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eead6b368f969a469e4f2b558967b29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalBins: 15
+  verticalBins: 10
+  binStepSize: 5
+  horizontalRange: 1
+  verticalRange: 1
+  vibrationFrequency: 100
+  pulseDuration: 0.1
+  waveform: 0
+  leftHand: {fileID: 1301172546}
+  rightHand: {fileID: 1301172545}
+  amplitudeStep: 0.1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

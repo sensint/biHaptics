@@ -16,6 +16,6 @@ MonoBehaviour:
   colorSpace: 7
   requestsVisualFaceTracking: 1
   requestsAudioFaceTracking: 1
-  telemetryProjectGuid: 23ad32b9-390e-4654-8ae9-ec6ab0ea5a30
+  telemetryProjectGuid: 0d953487-f83c-4fdf-9f71-275fb434ac07
   bodyTrackingFidelity: 1
   bodyTrackingJointSet: 0
