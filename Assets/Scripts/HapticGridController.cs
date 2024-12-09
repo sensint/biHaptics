@@ -33,61 +33,52 @@ public class HapticGridController : MonoBehaviour
     public Transform leftHand;  // Reference to the left hand
     public Transform rightHand; // Reference to the right hand
 
-    private int lastHorizontalBinL = -1; // Last horizontal bin LController
-    private int lastVerticalBinL = -1;   // Last vertical bin LController
+    private int lastHorizontalBinL = 0; // Last horizontal bin LController
+    private int lastVerticalBinL = 0;   // Last vertical bin LController
 
-    private int lastHorizontalBinR = -1; // Last horizontal bin RController
-    private int lastVerticalBinR = -1;   // Last vertical bin RController
-
-    private bool isHapticsOnL = false; // Haptics state for left controller
-    private bool isHapticsOnR = false; // Haptics state for right controller
+    private int lastHorizontalBinR = 0; // Last horizontal bin RController
+    private int lastVerticalBinR = 0;   // Last vertical bin RController
 
     private float vibrationStartTimeL = 0f; // Start time for left vibration
     private float vibrationStartTimeR = 0f; // Start time for right vibration
 
     void Update()
     {
-        // Check input for toggling haptics
-        HandleHapticsToggle(OVRInput.Controller.LTouch, ref isHapticsOnL);
-        HandleHapticsToggle(OVRInput.Controller.RTouch, ref isHapticsOnR);
 
         // Handle left controller haptic feedback
-        if (isHapticsOnL && leftHand != null)
+        if (leftHand != null)
         {
-            HandleHapticFeedback(leftHand, OVRInput.Controller.LTouch, ref lastHorizontalBinL, ref lastVerticalBinL, ref vibrationStartTimeL);
+            HandleHapticFeedback(leftHand, OVRInput.Controller.LTouch, ref lastHorizontalBinL, ref lastVerticalBinL, ref vibrationStartTimeL, OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch));
         }
 
         // Handle right controller haptic feedback
-        if (isHapticsOnR && rightHand != null)
+        if (rightHand != null)
         {
-            HandleHapticFeedback(rightHand, OVRInput.Controller.RTouch, ref lastHorizontalBinR, ref lastVerticalBinR, ref vibrationStartTimeR);
+            HandleHapticFeedback(rightHand, OVRInput.Controller.RTouch, ref lastHorizontalBinR, ref lastVerticalBinR, ref vibrationStartTimeR, OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch));
         }
     }
 
-    private void HandleHapticsToggle(OVRInput.Controller controller, ref bool isHapticsOn)
+    private void HandleHapticFeedback(Transform hand, OVRInput.Controller controller, ref int lastHorizontalBin, ref int lastVerticalBin, ref float vibrationStartTime, bool isPressing)
     {
-        // Check if Primary Index Trigger is pressed
-        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, controller))
-        {
-            isHapticsOn = !isHapticsOn; // Toggle haptics state
-            if (!isHapticsOn)
-            {
-                StopVibration(controller); // Stop haptics if toggled off
-                Debug.Log($"Haptics turned off for {controller}");
-            }
-            else
-            {
-                Debug.Log($"Haptics turned on for {controller}");
-            }
+        if (!isPressing){
+            StopVibration(controller);
+            return;
         }
-    }
 
-    private void HandleHapticFeedback(Transform hand, OVRInput.Controller controller, ref int lastHorizontalBin, ref int lastVerticalBin, ref float vibrationStartTime)
-    {
+        float horizontalDistance = Mathf.Abs(leftHand.position.x - rightHand.position.x);
+        float verticalDistance = Mathf.Abs(leftHand.position.y - rightHand.position.y);
+
+        horizontalDistance = Mathf.Clamp(horizontalDistance, 0, horizontalRange);
+        verticalDistance = Mathf.Clamp(verticalDistance, 0, verticalRange);
         
-        Vector3 handPosition = hand.position;
+        int horizontalBinID = Mathf.RoundToInt((horizontalDistance - 0) * (horizontalBins - 0) / (horizontalRange - 0));
+        int verticalBinID = Mathf.RoundToInt((verticalDistance - 0) * (verticalBins - 0) / (verticalRange - 0));
 
+
+        // Vector3 handPosition = hand.localPosition;
         // Map horizontal position to a bin
+        
+        /*
         int currentHorizontalBin = Mathf.Clamp(
             Mathf.FloorToInt((handPosition.x + horizontalRange / 2) / (horizontalRange / horizontalBins)),
             0, horizontalBins - 1
@@ -99,38 +90,36 @@ public class HapticGridController : MonoBehaviour
             Mathf.FloorToInt((handPosition.y + verticalRange / 2) / (verticalRange / verticalBins)),
             0, verticalBins - 1
         );
-       
+       */
 
         // Trigger haptic feedback if the bin has changed
-        if (currentHorizontalBin != lastHorizontalBin || currentVerticalBin != lastVerticalBin)
+        if (horizontalBinID != lastHorizontalBin || verticalBinID != lastVerticalBin)
         {
             float baseAmplitude;
 
-            if (currentHorizontalBin != lastHorizontalBin){
+            if (horizontalBinID != lastHorizontalBin){
                 baseAmplitude = horizontalAmplitude;
             }
-            else if (currentVerticalBin != lastVerticalBin){
+            else if (verticalBinID != lastVerticalBin){
                 baseAmplitude = verticalAmplitude;
             }
             else{
                 baseAmplitude = 0f;
             }
             
-            float amplitude = ApplyWaveform(baseAmplitude);
-
-        
+            // float amplitude = ApplyWaveform(baseAmplitude);
             // float horizontal_movement = (float) currentHorizontalBin/ horizontalBins;
             // float vertical_movement = (float) currentVerticalBin / verticalBins;
-            // float amplitude = Mathf.Clamp(Mathf.Max(horizontal_movement, vertical_movement), 0f, maxAmplitude);
+           // float amplitude = Mathf.Clamp(Mathf.Max(horizontal_movement, vertical_movement), 0f, maxAmplitude);
 
-            StartVibration(controller, vibrationFrequency, amplitude);
+            StartVibration(controller, vibrationFrequency, baseAmplitude);
 
             // Update last bin IDs and vibration start time
-            lastHorizontalBin = currentHorizontalBin;
-            lastVerticalBin = currentVerticalBin;
+            lastHorizontalBin = horizontalBinID;
+            lastVerticalBin = verticalBinID;
             vibrationStartTime = Time.time;
 
-            Debug.Log($"Controller: {controller}, Horizontal Bin: {currentHorizontalBin}, Vertical Bin: {currentVerticalBin}, Base Amplitude: {baseAmplitude}, Amplitude wiith Waveform: {amplitude}, Waveform: {waveform}");
+            // Debug.Log($"Controller: {controller}, Horizontal Bin: {currentHorizontalBin}, Vertical Bin: {currentVerticalBin}, Base Amplitude: {baseAmplitude}, Amplitude wiith Waveform: {amplitude}, Waveform: {waveform}");
         }
 
         
@@ -140,6 +129,8 @@ public class HapticGridController : MonoBehaviour
         }
     }
 
+
+    /*
     private float ApplyWaveform(float baseAmplitude){
         switch (waveform){
             case WaveformType.Sine:
@@ -153,7 +144,8 @@ public class HapticGridController : MonoBehaviour
             default:
                 return baseAmplitude;
         }
-    }
+    }*/
+
 
     private void StartVibration(OVRInput.Controller controller, float frequency, float amplitude)
     {
