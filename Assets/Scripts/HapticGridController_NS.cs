@@ -9,7 +9,7 @@ public class HapticGridControllerTranslation : MonoBehaviour
     /// </summary>
     [Header("Bin Settings")]
     [Range(1, 200)] public int horizontalBins = 100; // Slider for horizontal bins
-    //[Range(1, 200)] public int verticalBins = 50;   // Slider for vertical bins
+    [Range(1, 200)] public int verticalBins = 50;   // Slider for vertical bins
 
     [Tooltip("Step size for bin numbers")]
     public int binStepSize = 10;
@@ -27,8 +27,9 @@ public class HapticGridControllerTranslation : MonoBehaviour
     [Header("Haptic Settings")]
     public float VibrationFrequency = 125f; // Frequency of vibration
     public float VibrationDuration = 0.04f;      // Duration of vibration pulse
-    public float VibrationAmplitude = 1.0f;
+    public float VibrationAmplitude = 0.1f;
     private float distanceBetweenControllers = 0f;
+   
 
     [Header("Amplitude Mapping")]
     public float minimumAmplitude = 0.5f;
@@ -49,6 +50,7 @@ public class HapticGridControllerTranslation : MonoBehaviour
     [Header("Controllers Setting")]
     public Transform leftHand;  // Reference to the left hand
     public Transform rightHand; // Reference to the right hand
+   
 
     /// <summary>
     /// Detecting Movement of Hand Controllers
@@ -85,6 +87,10 @@ public class HapticGridControllerTranslation : MonoBehaviour
     private float kJitterThreshold = 0.01f;
     private float mappedAmplitude = 0.5f;
 
+    [Header ("Amplitude Control")]
+    [Tooltip("Amplitude adjustment step size")]
+    public float amplitudeStep = 0.1f;
+
     private void Start()
     {
         // Initialize the last known positions
@@ -95,6 +101,8 @@ public class HapticGridControllerTranslation : MonoBehaviour
 
     void Update()
     {
+        HandleAmplitudeControl();
+        HandleBinControl();
         // Continuous Distance Measurement
         GetCoordinates();
         distanceBetweenControllers = Mathf.Clamp(distanceBetweenControllersXYZ.x, minimumDistance, maximumDistance);
@@ -159,6 +167,38 @@ public class HapticGridControllerTranslation : MonoBehaviour
         leftLastPosition = leftHand.position.x;
         rightLastPosition = rightHand.position.x;
     }
+   
+    
+    private void HandleAmplitudeControl(){
+        if (Input.GetKeyDown(KeyCode.UpArrow)){
+            // horizontalAmplitude += amplitudeStep;
+            // verticalAmplitude += amplitudeStep;
+            VibrationAmplitude = Mathf.Min(1, VibrationAmplitude + amplitudeStep);
+            Debug.Log($"Increased Amp : Min{VibrationAmplitude}, Amplitude");
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow)){
+            // horizontalAmplitude = Mathf.Max(0, horizontalAmplitude - amplitudeStep);
+            // verticalAmplitude = Mathf.Max(0, verticalAmplitude - amplitudeStep);
+            VibrationAmplitude = Mathf.Max(0, VibrationAmplitude - amplitudeStep);
+            Debug.Log($"Decreased Amp: {VibrationAmplitude}, Amplitude");
+        }
+    }
+
+    private void HandleBinControl(){
+        if(Input.GetKeyDown(KeyCode.A)){
+            horizontalBins = Mathf.Min(200, horizontalBins + binStepSize);
+        }
+        else if (Input.GetKeyDown(KeyCode.D)){
+            horizontalBins = Mathf.Max(0, horizontalBins - binStepSize);
+        }
+        else if (Input.GetKeyDown(KeyCode.W)){
+            verticalBins = Mathf.Max(200, verticalBins + binStepSize);
+        }
+        else if (Input.GetKeyDown(KeyCode.S)){
+            verticalBins = Mathf.Max(0, verticalBins - binStepSize);
+        }
+    }
+
 
     private void HandleHapticsToggle(OVRInput.Controller controller, ref bool isTriggerPressed)
     {
