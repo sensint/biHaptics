@@ -393,7 +393,7 @@ public class HapticGridControllerTranslation : MonoBehaviour
     {
         OVRInput.SetControllerVibration(0, 0, controller);
         if (controller == OVRInput.Controller.RTouch) { isVibratingRight = false;}
-        if (controller == OVRInput.Controller.LTouch) { isVibratingLeft = false; Debug.Log("Stop Left"); }
+        if (controller == OVRInput.Controller.LTouch) { isVibratingLeft = false;}
     }
 
     private void StopVibrationBoth(OVRInput.Controller controller)

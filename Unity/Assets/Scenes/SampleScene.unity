@@ -1076,18 +1076,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1521516418}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 09fa14b54d54e534d8162bd64bc253a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   horizontalBins: 100
+  verticalBins: 50
   binStepSize: 10
   minimumDistance: 0.05
   maximumDistance: 0.8
-  VibrationFrequency: 125
-  VibrationDuration: 0.08
-  VibrationAmplitude: 1
+  VibrationFrequency: 120
+  VibrationDuration: 0.04
+  VibrationAmplitude: 0.1
   minimumAmplitude: 0.8
   maximumAmplitude: 1
   waveform: 2
@@ -1097,6 +1098,7 @@ MonoBehaviour:
   maximumBins: 80
   leftHand: {fileID: 1301172546}
   rightHand: {fileID: 1301172545}
+  amplitudeStep: 0.1
 --- !u!114 &1521516423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1109,10 +1111,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2571831caea86dd4ab9170ec3902556b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TotalBins: 50
+  TotalBins: 140
   binStepSize: 10
   VibrationFrequency: 100
-  VibrationDuration: 0.02
+  VibrationDuration: 0.01
   VibrationAmplitude: 1
   waveform: 0
   leftHand: {fileID: 1301172546}
@@ -1124,7 +1126,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1521516418}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2eead6b368f969a469e4f2b558967b29, type: 3}
   m_Name: 
