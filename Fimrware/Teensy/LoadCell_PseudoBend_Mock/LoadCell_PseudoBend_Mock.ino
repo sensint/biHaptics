@@ -1,4 +1,7 @@
-// NIHAR
+// Code to be individually uploaded to each Haptic Servo
+
+// Parameters: frequency of 80 works well. For 60, 65, 70, 75, there is ringing happening.
+
 #include <cmath>
 
 #include <Audio.h>
@@ -11,7 +14,6 @@
 #define DEBUG
 // uncomment to enable printing information of the augmentation to the serial port
 // #define DEBUG_A
-
 
 namespace defaults {
 
@@ -372,7 +374,7 @@ void loop() {
     // auto sensor_value = sensor.get_value(1);
 
     // this will limit the load cell to only one direction in the range of the calibrated values
-    sensor_value = constrain(sensor_value, sensor_settings.min_value, sensor_settings.max_value);
+    sensor_value = constrain(sensor_value, sensor_settings.min_value, sensor_settings.max_value); // Comment this to Check for both sided configurations.
 
     filtered_sensor_value =
       (1.f - sensor_settings.filter_weight) * filtered_sensor_value + sensor_settings.filter_weight * sensor_value;
@@ -404,13 +406,14 @@ void loop() {
   //     return;
   // }
 
-  if (mapped_bin_id != last_bin_id) {
+  // filtered_sensor_value > threshold_to_start_trigger this condition would make it vibrate only if the force applied is more than the threshold to vibrate
+  if (mapped_bin_id != last_bin_id && filtered_sensor_value > threshold_to_start_trigger) {
     if (is_vibrating) {
 #ifdef DEBUG_A
       Serial.println(F(">>> Stop pulse before it finished"));
 #endif
       StopPulse();
-      delay(1);  // debatable ;) maybe use delayMicroseconds(100) instead
+      delayMicroseconds(100);  // debatable ;) maybe use delayMicroseconds(100) instead
     }
 
 #ifdef DEBUG_A
