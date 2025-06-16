@@ -16,9 +16,9 @@ namespace defaults {
     // Sensor settings
     constexpr float kFilterWeight = 0.9f;
     constexpr uint32_t kSensorJitterThreshold = 10;     // increase value if vibration starts resonating too much
-    constexpr uint32_t kSendSensorDataMaxDelayMs = 30;  // in milliseconds
+    constexpr uint32_t kSendSensorDataMaxDelayMs = 10;  // in milliseconds
     constexpr uint32_t kCalibrationDelayMs = 5000;      // in milliseconds
-    constexpr uint16_t kCalibrationWeight = 50;         // in grams - set to value of your known weight
+    constexpr uint16_t kCalibrationWeight = 100;         // in grams - set to value of your known weight
 
     // Sensor settings (Left - Defaults, will be overwritten from EEPROM)
     constexpr float kSensorLeftScale = 1.0f;

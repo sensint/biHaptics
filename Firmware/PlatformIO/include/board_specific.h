@@ -8,8 +8,8 @@
 // Teensy-specific pin definitions
 #define SENSOR_LEFT_CLOCK_PIN 19
 #define SENSOR_LEFT_DATA_PIN 18
-#define SENSOR_RIGHT_CLOCK_PIN 16 // Example pin, please change if needed
-#define SENSOR_RIGHT_DATA_PIN 17  // Example pin, please change if needed
+#define SENSOR_RIGHT_CLOCK_PIN 24 // Example pin, please change if needed
+#define SENSOR_RIGHT_DATA_PIN 25  // Example pin, please change if needed
 #define SPEAKER_LEFT_PIN 6
 #define SPEAKER_RIGHT_PIN 10
 
@@ -22,8 +22,8 @@
 // ESP32-specific pin definitions
 #define SENSOR_LEFT_CLOCK_PIN 19
 #define SENSOR_LEFT_DATA_PIN 18
-#define SENSOR_RIGHT_CLOCK_PIN 24 // Example pin, please change if needed
-#define SENSOR_RIGHT_DATA_PIN 25  // Example pin, please change if needed
+#define SENSOR_RIGHT_CLOCK_PIN 16 // Example pin, please change if needed
+#define SENSOR_RIGHT_DATA_PIN 17  // Example pin, please change if needed
 #define DAC_CHANNEL_LEFT DAC_CHANNEL_1 // GPIO 25
 #define DAC_CHANNEL_RIGHT DAC_CHANNEL_2 // GPIO 26
 

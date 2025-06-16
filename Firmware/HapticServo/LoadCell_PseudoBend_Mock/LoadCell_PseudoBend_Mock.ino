@@ -54,7 +54,7 @@ static constexpr uint32_t kSensorMaxValue = 10000;         // in grams - will be
 static constexpr uint32_t kSensorJitterThreshold = 10;     // increase value if vibration starts resonating too much
 static constexpr uint32_t kSendSensorDataMaxDelayMs = 30;  // in milliseconds
 static constexpr uint32_t kCalibrationDelayMs = 5000;      // in milliseconds
-static constexpr uint16_t kCalibrationWeight = 50;         // in grams - set to value of your known weight
+static constexpr uint16_t kCalibrationWeight = 100;         // in grams - set to value of your known weight
 
 //=========== EEPROM ===========
 static constexpr int kEEPROMSensorScaleAddress = 0;     // holds a 32 bit (4 byte) float

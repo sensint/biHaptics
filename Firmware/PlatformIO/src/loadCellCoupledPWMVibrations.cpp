@@ -1,6 +1,5 @@
 #include <Arduino.h>
-#include <Wire.h>
-#include <EEPROM.h>
+// #include <Wire.h>
 
 #include "config.h"
 #include "board_specific.h"
@@ -189,6 +188,7 @@ void SetupSensors() {
         sensor_settings_right.max_value = defaults::kSensorRightMaxValue;
     }
     sensor_right.set_scale(sensor_settings_right.scale);
+    // sensor_right.set_scale(60.827965);
     sensor_right.tare();
 #ifdef DEBUG
     Serial.printf(">>> Right Sensor initial values from EEPROM:\n\t scale=%f\n\t min=%d\n\t max=%d\n",
@@ -251,7 +251,9 @@ void CalibrateSensorRange(HX711& sensor, SensorSettings& settings, int eeprom_mi
 #endif
     }
     EEPROM.put(eeprom_min_addr, settings.min_value);
+    EEPROM.put(eeprom_min_addr, 0);
     EEPROM.put(eeprom_max_addr, settings.max_value);
+    EEPROM.put(eeprom_max_addr, 5000);
 #ifdef BOARD_ESP32
     EEPROM.commit();
 #endif
@@ -506,7 +508,7 @@ void loop() {
     if (sensor_left.is_ready()) {
         // this will use units, i.e. grams
         auto sensor_value_left = sensor_left.get_units(1);
-
+        // delayMicroseconds(1); // This is crucial to have time for the get_units
         // this will limit the load cell to only one direction in the range of the calibrated values
         sensor_value_left = constrain(sensor_value_left, sensor_settings_left.min_value, sensor_settings_left.max_value); // Comment this to Check for both sided configurations.
         filtered_sensor_value_left = (1.f - sensor_settings_left.filter_weight) * filtered_sensor_value_left + sensor_settings_left.filter_weight * sensor_value_left;
@@ -523,6 +525,7 @@ void loop() {
 
     if (sensor_right.is_ready()) {
         auto sensor_value_right = sensor_right.get_units(1);
+        // delayMicroseconds(1);
         sensor_value_right = constrain(sensor_value_right, sensor_settings_right.min_value, sensor_settings_right.max_value); // Comment this to Check for both sided configurations.
         filtered_sensor_value_right = (1.f - sensor_settings_right.filter_weight) * filtered_sensor_value_right + sensor_settings_right.filter_weight * sensor_value_right;
 
