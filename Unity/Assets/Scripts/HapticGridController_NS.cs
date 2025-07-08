@@ -21,7 +21,7 @@ public class HapticGridControllerTranslation : MonoBehaviour
     }
 
     [Header("Movement Range")]
-    public float minimumDistance = 0.05f;
+    public float minimumDistance = 0.01f;
     public float maximumDistance = 1.0f; // Horizontal movement range
 
     [Header("Haptic Settings")]
