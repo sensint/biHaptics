@@ -5,8 +5,10 @@ public class AmplitudeRatioModulator : MonoBehaviour
 {
     public enum ModulationMode { NonMotionCoupled, MotionCoupled }
     public enum MaterialType {  Custom, Sponge, Rubber, Steel }
+    public enum InputType {  Position, Velocity }
+    public enum AmplitudeFunctionType { Linear, Exponential, Gaussian, AmplitudeCondition }   
 
-    [Header("Material Preset (Motion-Coupled Only")]
+    [Header("Material Preset (Motion-Coupled Only)")]
     public MaterialType materialType = MaterialType.Sponge;
 
     [Header("Haptic Settings")]
@@ -34,6 +36,18 @@ public class AmplitudeRatioModulator : MonoBehaviour
     [Range(0f, 1f)]
     public float maximumAmplitude = 1.0f;
 
+    [Header("Modulation Input")]
+    public InputType inputType = InputType.Position;
+
+    [Header("Amplitude Function")]
+    public AmplitudeFunctionType amplitudeFunction = AmplitudeFunctionType.Linear;
+    [Tooltip("Gaussian mu (center)")]
+    public float gaussianMu = 0.5f;
+    [Tooltip("Gaussian sigma (spread)")]
+    public float gaussianSigma = 0.2f;
+    [Tooltip("Exponential b (growth rate)")]
+    public float exponentialB = 2.0f;
+
     [Header("Motion Coupling Settings")]
     public ModulationMode modulationMode = ModulationMode.MotionCoupled;
     [Tooltip("Movement threshold to trigger haptics (meters)")]
@@ -58,6 +72,10 @@ public class AmplitudeRatioModulator : MonoBehaviour
     private HapticController hapticController;
     private int lastBinId = -1;
     private float lastDistance = 0f;
+    private Vector3 lastleftHandPos;
+    private Vector3 lastrightHandPos;
+    private float lastUpdateTime;
+    private float lastInputValue = 0f;
 
     // Preset parameter sets for different materials (motion-coupled only)
     // Sponge: soft, low follower, moderate connectedness
@@ -125,25 +143,50 @@ public class AmplitudeRatioModulator : MonoBehaviour
         }
         if (materialType != MaterialType.Custom)
             ApplyMaterialPreset(materialType);
+        if (leftHandTransform != null) lastleftHandPos = leftHandTransform.position;
+        if (rightHandTransform != null) lastrightHandPos = rightHandTransform.position;
+        lastUpdateTime = Time.time;
     }
 
     private void Update()
     {
+        float inputValue = 0f;
+        float now = Time.time;
+        float deltaTime = now - lastUpdateTime;
         if (modulationMode == ModulationMode.MotionCoupled)
         {
             if (leftHandTransform != null && rightHandTransform != null) 
             {
-                float distance = Mathf.Clamp((rightHandTransform.position - leftHandTransform.position).magnitude, minimumDistance, maximumDistance);
-                float normalizedDistance = (distance - minimumDistance) / (maximumDistance - minimumDistance);
-                int binId = Mathf.RoundToInt(normalizedDistance * (horizontalBins - 1));
+                //float distance = Mathf.Clamp((rightHandTransform.position - leftHandTransform.position).magnitude, minimumDistance, maximumDistance);
+                //float normalizedDistance = (distance - minimumDistance) / (maximumDistance - minimumDistance);
+                //int binId = Mathf.RoundToInt(normalizedDistance * (horizontalBins - 1));
+
+                if (inputType == InputType.Position)
+                {
+                    inputValue = Mathf.Clamp((rightHandTransform.position - leftHandTransform.position).magnitude, minimumDistance, maximumDistance);
+                    inputValue = (inputValue - minimumDistance) / (maximumDistance - minimumDistance);
+                }
+                else
+                {
+                    float leftVel = ((leftHandTransform.position - lastleftHandPos) / Mathf.Max(deltaTime, 1e-5f)).magnitude;
+                    float rightVel = ((rightHandTransform.position - lastrightHandPos) / Mathf.Max(deltaTime, 1e-5f)).magnitude;
+                    inputValue = Mathf.Max(leftVel, rightVel);
+                    inputValue = Mathf.Clamp01(inputValue / 2.0f);
+                }
+                int binId = Mathf.RoundToInt(inputValue * (horizontalBins - 1));
 
                 if (binId != lastBinId)
                 {
-                    Debug.Log($"[AmplitudeRatioModulator] Bin changed: {lastBinId} -> {binId} (distance: {distance:F3}m)");
-                    TriggerAmplitudeModulationInternal($"MOTION-COUPLED BIN CHANGE (bin {lastBinId}->{binId})");
+                    Debug.Log($"[AmplitudeRatioModulator] Bin changed: {lastBinId} -> {binId} (input: {inputValue:F3})");
+                    TriggerAmplitudeModulationInternal($"MOTION-COUPLED BIN CHANGE (bin {lastBinId}->{binId})", inputValue);
                     lastBinId = binId;
                 }
-                lastDistance = distance;
+                //lastDistance = distance;
+                lastDistance = inputValue;
+                lastleftHandPos = leftHandTransform.position;
+                lastrightHandPos = rightHandTransform.position;
+                lastUpdateTime = now;
+                lastInputValue = inputValue;
             }
 
         }
@@ -167,20 +210,44 @@ public class AmplitudeRatioModulator : MonoBehaviour
         }
     }
 
+    private float MapAmplitude(float input, float materialAmplitude)
+    {
+        switch (amplitudeFunction)
+        {
+            case AmplitudeFunctionType.Linear:
+                return Mathf.Lerp(minimumAmplitude, maximumAmplitude, input);
+            case AmplitudeFunctionType.Exponential:
+                return minimumAmplitude + (maximumAmplitude - minimumAmplitude) * (1 - Mathf.Exp(-exponentialB * input));
+            case AmplitudeFunctionType.Gaussian:
+                float gauss = Mathf.Exp(-Mathf.Pow(input - gaussianMu, 2) / (2 * gaussianSigma * gaussianSigma));
+                return minimumAmplitude + (maximumAmplitude - minimumAmplitude) * gauss;
+            case AmplitudeFunctionType.AmplitudeCondition:
+                return Mathf.Clamp(materialAmplitude, minimumAmplitude, maximumAmplitude);
+            default:
+                return Mathf.Lerp(minimumAmplitude, maximumAmplitude, input);
+        }
+    }
+
     /// <summary>
     /// Triggers amplitude ratio modulation for both hands, context-aware (free or attached).
     /// </summary>
     /// <param name="attached">True if hands are attached to rod, false if in free space.</param>
-    public void TriggerAmplitudeModulationInternal(string context)
-    {
+    public void TriggerAmplitudeModulationInternal(string context, float inputValue = -1f)
+    {   
+        if (inputValue < 0f) inputValue = lastInputValue;
         // Calculate amplitudes based on stiffness
         float actorAmp = Mathf.Lerp(softActorAmplitude, rigidAmplitude, stiffness);
         float followerAmp = Mathf.Lerp(softFollowerAmplitude, rigidAmplitude, stiffness);
         float actorFinal = Mathf.Lerp(actorAmp, followerAmp, connectedness);
         float followerFinal = Mathf.Lerp(followerAmp, actorAmp, connectedness);
-        float clampedActor = Mathf.Clamp(actorFinal, minimumAmplitude, maximumAmplitude);
-        float clampedFollower = Mathf.Clamp(followerFinal, minimumAmplitude, maximumAmplitude);
-        Debug.Log($"[AmplitudeRatioModulator] {context} | Stiffness: {stiffness:F2}, ActorAmp: {clampedActor:F2}, FollowerAmp: {clampedFollower:F2}, RightHandIsActor: {rightHandIsActor}, Connectedness: {connectedness:F2}");
+        //float clampedActor = Mathf.Clamp(actorFinal, minimumAmplitude, maximumAmplitude);
+        //float clampedFollower = Mathf.Clamp(followerFinal, minimumAmplitude, maximumAmplitude);
+        //Debug.Log($"[AmplitudeRatioModulator] {context} | Stiffness: {stiffness:F2}, ActorAmp: {clampedActor:F2}, FollowerAmp: {clampedFollower:F2}, RightHandIsActor: {rightHandIsActor}, Connectedness: {connectedness:F2}");
+        float clampedActor = MapAmplitude(inputValue, actorFinal);
+        float clampedFollower = MapAmplitude(inputValue, followerFinal);
+        clampedActor = Mathf.Clamp(clampedActor, minimumAmplitude, maximumAmplitude);
+        clampedFollower = Mathf.Clamp(clampedFollower, minimumAmplitude, maximumAmplitude);
+        Debug.Log($"[AmplitudeRatioModulator] {context} | Stiffness: {stiffness:F2}, ActorAmp: {clampedActor:F2}, FollowerAmp: {clampedFollower:F2}, RightHandIsActor: {rightHandIsActor}, Connectedness: {connectedness:F2}, Input: {inputValue:F2}");
 
         if (rightHandIsActor)
         {
