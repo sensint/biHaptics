@@ -3,20 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|c:\\users\\nsabnis-adm\\documents\\github\\pseudobendplusplus\\unity\\assets\\scripts\\timedelaymodulation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|c:\\users\\nsabnis-adm\\documents\\github\\pseudobendplusplus\\unity\\assets\\scripts\\lighttoggle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\lighttoggle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|c:\\users\\nsabnis-adm\\documents\\github\\pseudobendplusplus\\unity\\assets\\scripts\\experiment1aampmodulator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\experiment1aampmodulator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\assets\\scripts\\whitenoise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\whitenoise.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\assets\\scripts\\timedelaymodulation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\timedelaymodulation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|c:\\users\\nsabnis-adm\\documents\\github\\pseudobendplusplus\\unity\\assets\\scripts\\frequencymodulation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\frequencymodulation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|c:\\users\\nsabnis-adm\\documents\\github\\pseudobendplusplus\\unity\\assets\\scripts\\rotation_ns.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\rotation_ns.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\assets\\scripts\\amplituderatiomodulator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\amplituderatiomodulator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\assets\\scripts\\rodinteraction_ovr.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\rodinteraction_ovr.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Library\\PackageCache\\com.meta.xr.sdk.core@71.0.0\\Scripts\\Util\\OVRGrabbable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Library\\PackageCache\\com.meta.xr.sdk.core@71.0.0\\Scripts\\Util\\OVRGrabbable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\assets\\scripts\\hapticcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,33 +42,70 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FrequencyModulation.cs",
-              "DocumentMoniker": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\FrequencyModulation.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\FrequencyModulation.cs",
-              "ToolTip": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\FrequencyModulation.cs",
-              "RelativeToolTip": "Assets\\Scripts\\FrequencyModulation.cs",
-              "ViewState": "AgIAAMEAAAAAAAAAAAAgwNYAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "LightToggle.cs",
+              "DocumentMoniker": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\LightToggle.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\LightToggle.cs",
+              "ToolTip": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\LightToggle.cs",
+              "RelativeToolTip": "Assets\\Scripts\\LightToggle.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-14T14:15:23.413Z",
+              "WhenOpened": "2025-07-22T12:11:07.933Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "WhiteNoise.cs",
+              "DocumentMoniker": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\WhiteNoise.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\WhiteNoise.cs",
+              "ToolTip": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\WhiteNoise.cs",
+              "RelativeToolTip": "Assets\\Scripts\\WhiteNoise.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-22T11:43:23.596Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Experiment1aAmpModulator.cs",
+              "DocumentMoniker": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\Experiment1aAmpModulator.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Experiment1aAmpModulator.cs",
+              "ToolTip": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\Experiment1aAmpModulator.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Experiment1aAmpModulator.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAgwD8AAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-21T15:31:34.598Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "OVRGrabbable.cs",
+              "DocumentMoniker": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Library\\PackageCache\\com.meta.xr.sdk.core@71.0.0\\Scripts\\Util\\OVRGrabbable.cs",
+              "RelativeDocumentMoniker": "Library\\PackageCache\\com.meta.xr.sdk.core@71.0.0\\Scripts\\Util\\OVRGrabbable.cs",
+              "ToolTip": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Library\\PackageCache\\com.meta.xr.sdk.core@71.0.0\\Scripts\\Util\\OVRGrabbable.cs",
+              "RelativeToolTip": "Library\\PackageCache\\com.meta.xr.sdk.core@71.0.0\\Scripts\\Util\\OVRGrabbable.cs",
+              "ViewState": "AgIAAIQAAAAAAAAAAAAawK4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T14:14:35.893Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "TimeDelayModulation.cs",
               "DocumentMoniker": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\TimeDelayModulation.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\TimeDelayModulation.cs",
               "ToolTip": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\TimeDelayModulation.cs",
               "RelativeToolTip": "Assets\\Scripts\\TimeDelayModulation.cs",
-              "ViewState": "AgIAAO8AAAAAAAAAAAAiwP8AAACEAAAAAAAAAA==",
+              "ViewState": "AgIAAMcAAAAAAAAAAADwv+4AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-08T13:21:41.763Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-08T13:21:41.763Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "HapticController.cs",
               "DocumentMoniker": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\HapticController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\HapticController.cs",
@@ -69,30 +114,39 @@
               "ViewState": "AgIAAAMAAAAAAAAAAAAAACsAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-07T15:29:24.518Z"
-            },
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "c7962525-3e50-42d7-a3ae-ff5e5f7186dc",
+        "Display": 0,
+        "X": 258,
+        "Y": 301,
+        "Width": 2547,
+        "Height": 1144,
+        "WindowState": 0
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "RodInteraction_OVR.cs",
-              "DocumentMoniker": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\RodInteraction_OVR.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\RodInteraction_OVR.cs",
-              "ToolTip": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\RodInteraction_OVR.cs",
-              "RelativeToolTip": "Assets\\Scripts\\RodInteraction_OVR.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAA8AAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "Rotation_NS.cs",
+              "DocumentMoniker": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\Rotation_NS.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Rotation_NS.cs",
+              "ToolTip": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\Rotation_NS.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Rotation_NS.cs",
+              "ViewState": "AgIAAKEAAAAAAAAAAAAuwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-07T10:20:28.136Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AmplitudeRatioModulator.cs",
-              "DocumentMoniker": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\AmplitudeRatioModulator.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\AmplitudeRatioModulator.cs",
-              "ToolTip": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\AmplitudeRatioModulator.cs",
-              "RelativeToolTip": "Assets\\Scripts\\AmplitudeRatioModulator.cs",
-              "ViewState": "AgIAAMYAAAAAAAAAAAAkwOsAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-01T11:34:03.6Z",
+              "WhenOpened": "2025-07-21T16:15:11.306Z",
               "EditorCaption": ""
             }
           ]
