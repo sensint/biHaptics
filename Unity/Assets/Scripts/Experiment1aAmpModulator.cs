@@ -12,7 +12,8 @@ public class Experiment1aAmpModulator : MonoBehaviour
     public InputType inputType = InputType.Relative;
     public CrosstalkLevel crosstalk = CrosstalkLevel.CT0;
     //public string[] experimentConditions = new string[] { "A0", "A25", "A50", "A75", "A100", "R100", "R75", "R50", "R25", "R0", "XX" }; // Testing String
-    public string[] experimentConditions = new string[] { "A100", "R0", "R25", "R50", "R75", "XX", "A75", "A50", "A25", "A0", "R100", "R100", "A75", "A25", "A50", "A0", "XX", "R0", "R75", "A100", "R50", "R25" };
+    //public string[] experimentConditions = new string[] { "A100", "R0", "R25", "R50", "R75", "XX", "A75", "A50", "A25", "A0", "R100", "R100", "A75", "A25", "A50", "A0", "XX", "R0", "R75", "A100", "R50", "R25" }; This is problematic when R100 repeats
+    public string[] experimentConditions = new string[] { "A25", "A50", "A75", "A100", "R0", "XX", "A0", "R100", "R75", "R50", "R25", "A50", "A75", "A25", "R100", "R25", "XX", "A0", "R0", "A100", "R50", "R75" };
     public int currentConditionIndex = 0;
 
     [Header("Haptic Settings")]
@@ -22,11 +23,11 @@ public class Experiment1aAmpModulator : MonoBehaviour
     [Header("Motion Coupling Settings")]
     public Transform leftHandTransform;
     public Transform rightHandTransform;
-    public float movementThreshold = 0.002f; // minimal movement to trigger pulse
+    public float movementThreshold = 0.003f; // minimal movement to trigger pulse
     public float minimumDistance = 0.05f;
     public float maximumDistance = 1.0f;
     [Range(2, 500)]
-    public int horizontalBins = 200;
+    public int horizontalBins = 400;
 
     [Header("Mapping Type")]
     public MappingType mappingType = MappingType.Combined;
@@ -40,6 +41,8 @@ public class Experiment1aAmpModulator : MonoBehaviour
     private float[] crosstalkValues = new float[] { 0f, 0.25f, 0.5f, 0.75f, 1f };
 
     private bool vibrationsDisabled = false;
+    private bool inInterlude = false;
+    //private bool inContinuousVibration = false;
 
     private void Awake()
     {
@@ -63,20 +66,31 @@ public class Experiment1aAmpModulator : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            currentConditionIndex = (currentConditionIndex + 1) % experimentConditions.Length;
-            ParseCondition(experimentConditions[currentConditionIndex]);
-            Debug.Log($"[Experiment] Switched to condition: {experimentConditions[currentConditionIndex]}");
+            if (!inInterlude)
+            {
+                // Currently in experiment condition, transition to interlude
+                inInterlude = true;
+                ParseCondition("XX");
+                Debug.Log($"[Experiment] Entering interlude (XX condition). Press Space again for next experiment.");
+            }
+            else
+            {
+                inInterlude = false;
+                currentConditionIndex = (currentConditionIndex + 1) % experimentConditions.Length;
+                ParseCondition(experimentConditions[currentConditionIndex]);
+                Debug.Log($"[Experiment] Switched to next condition: {experimentConditions[currentConditionIndex]}");
+            }
         }
 
         // Handle previous condition (B key)
         if (Input.GetKeyDown(KeyCode.B))
         {
+            inInterlude = false;
             currentConditionIndex = (currentConditionIndex - 1 + experimentConditions.Length) % experimentConditions.Length;
             ParseCondition(experimentConditions[currentConditionIndex]);
             Debug.Log($"[Experiment] Switched to previous condition: {experimentConditions[currentConditionIndex]}");
         }
 
-        //if (vibrationsDisabled || leftHandTransform == null || rightHandTransform == null) return;
         if (leftHandTransform == null || rightHandTransform == null) return;
 
         // Detect movement
@@ -133,10 +147,15 @@ public class Experiment1aAmpModulator : MonoBehaviour
 
     private void ParseCondition(string cond)
     {
+        //// Stop any existing continuous vibrations before parsing new condition
+        //hapticController.StopVibration(OVRInput.Controller.LTouch);
+        //hapticController.StopVibration(OVRInput.Controller.RTouch);
+        //inContinuousVibration = false; // Reset continuous vibration flag
+        //vibrationsDisabled = false; // Reset general vibration disabled flag
+
         if (cond == "XX")
         {
-            //inputType = InputType.Relative;
-            //crosstalk = CrosstalkLevel.CT0;
+            Debug.Log("[Haptics] All vibrations disabled.");
             vibrationsDisabled = true;
             return;
         }
@@ -283,3 +302,4 @@ public class Experiment1aAmpModulator : MonoBehaviour
         }
     }
 }
+
