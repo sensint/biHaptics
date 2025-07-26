@@ -224,10 +224,8 @@ public class Experiment1aAmpModCont_v2 : MonoBehaviour
                 switch (ct)
                 {
                     case 0: crosstalk = CrosstalkLevel.CT0; break;
-                    //case 25: crosstalk = CrosstalkLevel.CT25; break;
                     case 33: crosstalk = CrosstalkLevel.CT33; break;
                     case 66: crosstalk = CrosstalkLevel.CT66; break;
-                    //case 75: crosstalk = CrosstalkLevel.CT75; break;
                     case 100: crosstalk = CrosstalkLevel.CT100; break;
                 }
                 Debug.Log($"[Haptics] Set to {cond} (movement-based, short-pulse haptics).");

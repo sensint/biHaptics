@@ -142,6 +142,9 @@ GameObject:
   - component: {fileID: 182944349}
   - component: {fileID: 182944348}
   - component: {fileID: 182944350}
+  - component: {fileID: 182944351}
+  - component: {fileID: 182944352}
+  - component: {fileID: 182944353}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -318,7 +321,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 182944338}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7612b35867f2a0488184c17a4bd5dfc, type: 3}
   m_Name: 
@@ -326,34 +329,34 @@ MonoBehaviour:
   inputType: 1
   crosstalk: 0
   experimentConditions:
-  - A100
-  - R0
-  - R25
-  - R50
-  - R75
-  - XX
-  - A75
-  - A50
-  - A25
-  - A0
-  - R100
-  - R100
-  - A75
   - A25
   - A50
-  - A0
-  - XX
-  - R0
-  - R75
+  - A75
   - A100
+  - R0
+  - XX
+  - A0
+  - R100
+  - R75
   - R50
   - R25
+  - A50
+  - A75
+  - A25
+  - R100
+  - R25
+  - XX
+  - A0
+  - R0
+  - A100
+  - R50
+  - R75
   currentConditionIndex: 0
   vibrationFrequency: 125
   vibrationDuration: 0.008
-  leftHandTransform: {fileID: 0}
-  rightHandTransform: {fileID: 0}
-  movementThreshold: 0.002
+  leftHandTransform: {fileID: 1301172546}
+  rightHandTransform: {fileID: 1301172545}
+  movementThreshold: 0.001
   minimumDistance: 0.05
   maximumDistance: 1
   horizontalBins: 200
@@ -483,6 +486,148 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightsToToggle: []
+--- !u!114 &182944351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182944338}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a226c43d94fd42e4dae7d47bd7e821fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputType: 1
+  crosstalk: 0
+  experimentConditions:
+  - C2
+  - A33
+  - R66
+  - R100
+  - XX
+  - A66
+  - R0
+  - A0
+  - C1
+  - A100
+  - R33
+  - R66
+  - C2
+  - A66
+  - C1
+  - R0
+  - R33
+  - A33
+  - A0
+  - A100
+  - XX
+  - R100
+  currentConditionIndex: 0
+  vibrationFrequency: 125
+  vibrationDuration: 0.008
+  leftHandTransform: {fileID: 1301172546}
+  rightHandTransform: {fileID: 1301172545}
+  movementThreshold: 0.003
+  minimumDistance: 0.05
+  maximumDistance: 1
+  horizontalBins: 200
+  mappingType: 3
+--- !u!114 &182944352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182944338}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93f708a5d7f33b144b59e5abc17403b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputType: 1
+  crosstalk: 0
+  experimentConditions:
+  - C1
+  - A100
+  - A66
+  - XX
+  - A33
+  - R0
+  - R66
+  - R33
+  - C2
+  - A0
+  - R100
+  - A0
+  - A100
+  - R33
+  - R100
+  - C1
+  - R0
+  - R66
+  - A66
+  - C2
+  - XX
+  - A33
+  currentConditionIndex: 0
+  vibrationFrequency: 125
+  vibrationDuration: 0.008
+  continuousAmplitude: 1
+  leftHandTransform: {fileID: 1301172546}
+  rightHandTransform: {fileID: 1301172545}
+  movementThreshold: 0.003
+  minimumDistance: 0.05
+  maximumDistance: 1
+  horizontalBins: 200
+  mappingType: 3
+--- !u!114 &182944353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182944338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec88b92681dfd994484bb7378e9915a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputType: 1
+  crosstalk: 0
+  experimentConditions:
+  - C1
+  - A100
+  - A66
+  - XX
+  - A33
+  - R0
+  - R66
+  - R33
+  - C2
+  - A0
+  - R100
+  - A0
+  - A100
+  - R33
+  - R100
+  - C1
+  - R0
+  - R66
+  - A66
+  - C2
+  - XX
+  - A33
+  currentConditionIndex: 0
+  vibrationFrequency: 125
+  vibrationDuration: 0.008
+  leftHandTransform: {fileID: 1301172546}
+  rightHandTransform: {fileID: 1301172545}
+  movementThreshold: 0.002
+  minimumDistance: 0.05
+  maximumDistance: 1
+  horizontalBins: 300
+  mappingType: 3
 --- !u!1 &257563187
 GameObject:
   m_ObjectHideFlags: 0

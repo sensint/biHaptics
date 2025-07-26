@@ -34,30 +34,27 @@ public class Exp1aFinal : MonoBehaviour
     private HapticController hapticController;
     private Vector3 lastLeftPos;
     private Vector3 lastRightPos;
-    private float lastUpdateTime;
-
-    private float[] crosstalkValues = new float[] { 0f, 0.33f, 0.66f, 1f };
-    private bool vibrationsDisabled = false;
-    private bool inContinuousVibrationMode = false;
-    private bool inInterlude = false;
     private int lastLeftBin = -1;
     private int lastRightBin = -1;
     private int lastRelativeBin = -1;
+    private float[] crosstalkValues = new float[] { 0f, 0.33f, 0.66f, 1f };
+
+    private bool vibrationsDisabled = false;
+    private bool inContinuousVibrationMode = false;
+    private bool inInterlude = false;
 
     private ContinuousVibrationType currentContinuousVibrationType = ContinuousVibrationType.None;
     private enum ContinuousVibrationType { None, OnMovingHand, BothIfOneMoves }
 
-
     private void Awake()
     {
         hapticController = GetComponent<HapticController>();
-        if (hapticController != null)
+        if (hapticController == null)
         {
             hapticController = gameObject.AddComponent<HapticController>();
         }
         if (leftHandTransform != null) lastLeftPos = leftHandTransform.position;
         if (rightHandTransform != null) lastRightPos = rightHandTransform.position;
-        lastUpdateTime = Time.time;
 
         if (experimentConditions.Length > 0)
         {
@@ -102,8 +99,9 @@ public class Exp1aFinal : MonoBehaviour
             }
         }
 
-            if (!inContinuousVibrationMode && !vibrationsDisabled)
+        if (!inContinuousVibrationMode && !vibrationsDisabled && leftHandTransform != null && rightHandTransform != null)
         {
+            // Detect movement
             bool leftMoved = (leftHandTransform.position - lastLeftPos).magnitude > movementThreshold;
             bool rightMoved = (rightHandTransform.position - lastRightPos).magnitude > movementThreshold;
 
@@ -129,30 +127,30 @@ public class Exp1aFinal : MonoBehaviour
                             break;
                     }
                 }
-            }
-            else
-            {
-                switch (mappingType)
+                else
                 {
-                    case MappingType.Stretching:
-                        HandleAbsoluteStretchingBins(leftMoved, rightMoved);
-                        break;
-                    case MappingType.Bending:
-                        HandleAbsoluteBendingBins(leftMoved, rightMoved);
-                        break;
-                    case MappingType.Twisting:
-                        HandleAbsoluteTwistingBins(leftMoved, rightMoved);
-                        break;
-                    case MappingType.Combined:
-                        HandleAbsoluteStretchingBins(leftMoved, rightMoved);
-                        HandleAbsoluteBendingBins(leftMoved, rightMoved);
-                        HandleAbsoluteTwistingBins(leftMoved, rightMoved);
-                        break;
+                    switch (mappingType)
+                    {
+                        case MappingType.Stretching:
+                            HandleAbsoluteStretchingBins(leftMoved, rightMoved);
+                            break;
+                        case MappingType.Bending:
+                            HandleAbsoluteBendingBins(leftMoved, rightMoved);
+                            break;
+                        case MappingType.Twisting:
+                            HandleAbsoluteTwistingBins(leftMoved, rightMoved);
+                            break;
+                        case MappingType.Combined:
+                            HandleAbsoluteStretchingBins(leftMoved, rightMoved);
+                            HandleAbsoluteBendingBins(leftMoved, rightMoved);
+                            HandleAbsoluteTwistingBins(leftMoved, rightMoved);
+                            break;
+                    }
                 }
             }
-            lastLeftPos = leftHandTransform.position;
-            lastRightPos = rightHandTransform.position;
         }
+        lastLeftPos = leftHandTransform.position;
+        lastRightPos = rightHandTransform.position;
     }
 
     private void HandleRelativeStretchingBins(bool leftMoved, bool rightMoved)
@@ -318,46 +316,44 @@ public class Exp1aFinal : MonoBehaviour
 
     private void ParseCondition(string cond)
     {
+        hapticController.StopVibration(OVRInput.Controller.LTouch);
+        hapticController.StopVibration(OVRInput.Controller.RTouch);
+        
+        inContinuousVibrationMode = false;
+        currentContinuousVibrationType = ContinuousVibrationType.None; // Reset specific type
+        vibrationsDisabled = false;
+        
+        // TODO: Reset all bins like v3?
+        switch (cond)
         {
-            hapticController.StopVibration(OVRInput.Controller.LTouch);
-            hapticController.StopVibration(OVRInput.Controller.RTouch);
-
-            inContinuousVibrationMode = false;
-            currentContinuousVibrationType = ContinuousVibrationType.None; // Reset specific type
-            vibrationsDisabled = false;
-
-            // TODO: Reset all bins like v3?
-
-            switch (cond)
-            {
-                case "XX":
-                    Debug.Log("[Haptics] All vibrations disabled.");
-                    vibrationsDisabled = true;
-                    break;
-                case "C1":
-                    inContinuousVibrationMode = true;
-                    currentContinuousVibrationType = ContinuousVibrationType.OnMovingHand;
-                    Debug.Log("[Haptics] Continuous vibration only on the moving hand (C1 condition).");
-                    break;
-                case "C2":
-                    inContinuousVibrationMode = true;
-                    currentContinuousVibrationType = ContinuousVibrationType.BothIfOneMoves;
-                    Debug.Log("[Haptics] Continuous vibration on both hands if one moves (C2 condition).");
-                    break;
-                default:
-                    inputType = cond[0] == 'A' ? InputType.Absolute : InputType.Relative;
-                    int ct = int.Parse(cond.Substring(1));
-                    switch (ct)
-                    {
-                        case 0: crosstalk = CrosstalkLevel.CT0; break;
-                        case 33: crosstalk = CrosstalkLevel.CT33; break;
-                        case 66: crosstalk = CrosstalkLevel.CT66; break;
-                        case 100: crosstalk = CrosstalkLevel.CT100; break;
-                        default: Debug.LogWarning($"[Experiment] Unknown crosstalk level: {ct}. Defaulting to CT0."); crosstalk = CrosstalkLevel.CT0; break;
-                    }
-                    Debug.Log($"[Haptics] Set to {cond} (movement-based, short-pulse haptics).");
-                    break;
-            }
+            case "XX":
+                Debug.Log("[Haptics] All vibrations disabled.");
+                vibrationsDisabled = true;
+                break;
+            case "C1":
+                inContinuousVibrationMode = true;
+                currentContinuousVibrationType = ContinuousVibrationType.OnMovingHand;
+                Debug.Log("[Haptics] Continuous vibration only on the moving hand (C1 condition).");
+                break;
+            case "C2":
+                inContinuousVibrationMode = true;
+                currentContinuousVibrationType = ContinuousVibrationType.BothIfOneMoves;
+                Debug.Log("[Haptics] Continuous vibration on both hands if one moves (C2 condition).");
+                break;
+            default:
+                inputType = cond[0] == 'A' ? InputType.Absolute : InputType.Relative;
+                int ct = int.Parse(cond.Substring(1));
+                switch (ct)
+                {
+                    case 0: crosstalk = CrosstalkLevel.CT0; break;
+                    case 33: crosstalk = CrosstalkLevel.CT33; break;
+                    case 66: crosstalk = CrosstalkLevel.CT66; break;
+                    case 100: crosstalk = CrosstalkLevel.CT100; break;
+                    default: Debug.LogWarning($"[Experiment] Unknown crosstalk level: {ct}. Defaulting to CT0."); crosstalk = CrosstalkLevel.CT0; break;
+                }
+                Debug.Log($"[Haptics] Set to {cond} (movement-based, short-pulse haptics).");
+                break;
         }
+        
     }
 }
