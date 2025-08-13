@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|c:\\users\\nsabnis-adm\\documents\\github\\pseudobendplusplus\\unity\\assets\\scripts\\experiment1aampmodulator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\experiment1aampmodulator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\assets\\copyposition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|solutionrelative:assets\\copyposition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\assets\\scripts\\experiment1aampmodcont_v3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\experiment1aampmodcont_v3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|c:\\users\\nsabnis-adm\\documents\\github\\pseudobendplusplus\\unity\\assets\\scripts\\exp2_v1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\exp2_v1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|c:\\users\\nsabnis-adm\\documents\\github\\pseudobendplusplus\\unity\\assets\\scripts\\exp1afinal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\exp1afinal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\assets\\movecylinder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|solutionrelative:assets\\movecylinder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\assets\\scripts\\rotation_ns.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\rotation_ns.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,32 +30,111 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Experiment1aAmpModulator.cs",
-              "DocumentMoniker": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\Experiment1aAmpModulator.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Experiment1aAmpModulator.cs",
-              "ToolTip": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\Experiment1aAmpModulator.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Experiment1aAmpModulator.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAA9wBsAAAAhAAAAAAAAAA==",
+              "Title": "CopyPosition.cs",
+              "DocumentMoniker": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\CopyPosition.cs",
+              "RelativeDocumentMoniker": "Assets\\CopyPosition.cs",
+              "ToolTip": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\CopyPosition.cs",
+              "RelativeToolTip": "Assets\\CopyPosition.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-25T11:50:52.477Z",
+              "WhenOpened": "2025-08-04T13:08:11.225Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Experiment1aAmpModCont_v3.cs",
-              "DocumentMoniker": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\Experiment1aAmpModCont_v3.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Experiment1aAmpModCont_v3.cs",
-              "ToolTip": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\Experiment1aAmpModCont_v3.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Experiment1aAmpModCont_v3.cs",
-              "ViewState": "AgIAAHEAAAAAAAAAAAAIwKUAAAAIAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "MoveCylinder.cs",
+              "DocumentMoniker": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\MoveCylinder.cs",
+              "RelativeDocumentMoniker": "Assets\\MoveCylinder.cs",
+              "ToolTip": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\MoveCylinder.cs",
+              "RelativeToolTip": "Assets\\MoveCylinder.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-25T07:42:47.636Z",
+              "WhenOpened": "2025-08-04T12:58:40.68Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Rotation_NS.cs",
+              "DocumentMoniker": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\Rotation_NS.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Rotation_NS.cs",
+              "ToolTip": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\Rotation_NS.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Rotation_NS.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-01T09:25:53.956Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "3bd42552-6c79-448e-a0ce-1704c82789df",
+        "Display": 0,
+        "X": 1193,
+        "Y": 483,
+        "Width": 2522,
+        "Height": 1144,
+        "WindowState": 0
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Exp1aFinal.cs",
+              "DocumentMoniker": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\Exp1aFinal.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Exp1aFinal.cs",
+              "ToolTip": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\Exp1aFinal.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Exp1aFinal.cs",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAmwBoBAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-26T08:17:32.042Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "36aaa4b3-81c2-4995-b6c4-634f53456c50",
+        "Display": 0,
+        "X": 1656,
+        "Y": 92,
+        "Width": 1240,
+        "Height": 1142,
+        "WindowState": 0
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Exp2_v1.cs",
+              "DocumentMoniker": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\Exp2_v1.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Exp2_v1.cs",
+              "ToolTip": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\Exp2_v1.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Exp2_v1.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAwwFwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T08:38:20.98Z",
               "EditorCaption": ""
             }
           ]

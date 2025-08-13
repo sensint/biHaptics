@@ -78,10 +78,12 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\Scripts\RodInteraction_OVR.cs" />
     <Compile Include="Assets\Scripts\CylinderVisual.cs" />
+    <Compile Include="Assets\MoveCylinder.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\HapticUtils.cs" />
     <Compile Include="Assets\Scripts\HapticGridController_NS.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
+    <Compile Include="Assets\CopyPosition.cs" />
     <Compile Include="Assets\Scripts\HapticController.cs" />
     <Compile Include="Assets\Scripts\Exp1aFinal.cs" />
     <Compile Include="Assets\Scripts\Base\ButtonPress.cs" />
@@ -108,6 +110,7 @@
     <Compile Include="Assets\LightsManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
+    <Compile Include="Assets\Scripts\Exp2_v1.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />

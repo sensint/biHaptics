@@ -12,7 +12,7 @@ public class Exp1aFinal : MonoBehaviour
     [Header("Experiment Condition Control")]
     public InputType inputType = InputType.Relative;
     public CrosstalkLevel crosstalk = CrosstalkLevel.CT0;
-    public string[] experimentConditions = new string[] { "C1", "A100", "A66", "XX", "A33", "R0", "R66", "R33", "C2", "A0", "R100", "A0", "A100", "R33", "R100", "C1", "R0", "R66", "A66", "C2", "XX", "A33" };
+    public string[] experimentConditions = new string[] { "R100", "R66", "XX", "XX", "R0", "R33", "A100", "A0", "A33", "A66", "A33", "R100", "XX", "R0", "A100", "XX", "A66", "A0", "R33", "R66" };
     public int currentConditionIndex = 0;
 
     [Header("Haptic Settings")]
@@ -22,11 +22,11 @@ public class Exp1aFinal : MonoBehaviour
     [Header("Motion Coupling Settings")]
     public Transform leftHandTransform;
     public Transform rightHandTransform;
-    public float movementThreshold = 0.002f;
+    public float movementThreshold = 0.001f;
     public float minimumDistance = 0.05f;
-    public float maximumDistance = 1.0f;
+    public float maximumDistance = 2.0f;
     [Range(2, 500)]
-    public int horizontalBins = 300;
+    public int horizontalBins = 200;
 
     [Header("Mapping Type")]
     public MappingType mappingType = MappingType.Combined;

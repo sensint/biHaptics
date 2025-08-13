@@ -1,54 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\assets\\scripts\\experiment1aampmodcont_v3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\experiment1aampmodcont_v3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\assets\\scripts\\experiment1aampmodulator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\experiment1aampmodulator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 2,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Experiment1aAmpModulator.cs",
-              "DocumentMoniker": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\Experiment1aAmpModulator.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Experiment1aAmpModulator.cs",
-              "ToolTip": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\Experiment1aAmpModulator.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Experiment1aAmpModulator.cs",
-              "ViewState": "AgIAAO8AAAAAAAAAAAAAAP8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-25T11:50:52.477Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Experiment1aAmpModCont_v3.cs",
-              "DocumentMoniker": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\Experiment1aAmpModCont_v3.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Experiment1aAmpModCont_v3.cs",
-              "ToolTip": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\Experiment1aAmpModCont_v3.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Experiment1aAmpModCont_v3.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIIBAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-25T07:42:47.636Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }
