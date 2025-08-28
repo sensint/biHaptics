@@ -1,12 +1,69 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\assets\\scripts\\uicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\uicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\assets\\scripts\\hapticinteractionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\hapticinteractionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\assets\\scripts\\slidercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\slidercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UIController.cs",
+              "DocumentMoniker": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\UIController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\UIController.cs",
+              "ToolTip": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\UIController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\UIController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-27T10:49:55.403Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HapticInteractionManager.cs",
+              "DocumentMoniker": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\HapticInteractionManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\HapticInteractionManager.cs",
+              "ToolTip": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\HapticInteractionManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\HapticInteractionManager.cs",
+              "ViewState": "AgIAAIYAAAAAAAAAAAAlwFoAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-27T10:34:17.252Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SliderController.cs",
+              "DocumentMoniker": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\SliderController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\SliderController.cs",
+              "ToolTip": "C:\\Users\\nsabnis-adm\\Documents\\GitHub\\PseudoBendPlusPlus\\Unity\\Assets\\Scripts\\SliderController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\SliderController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-27T10:25:28.571Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
