@@ -27,9 +27,11 @@ public class UIController : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("UIController Start() called.");
+
         if (hapticManager == null)
         {
-            Debug.LogError("HapticInteractionManager reference not set in UIController!");
+            Debug.LogError("HapticInteractionManager reference not set in UIController! Check the Inspector.");
             return;
         }
 
@@ -63,12 +65,14 @@ public class UIController : MonoBehaviour
     // --- Public methods to be called by slider events ---
     public void UpdateDominantAmplitude(float value)
     {
+        Debug.Log($"Updating Dominant Amplitude to: {value}");
         hapticManager.dominantAmplitude = value;
         dominantAmplitude.currentValueLabel.text = string.Format("{0:F2}", value);
     }
 
     public void UpdateDominantFrequency(float value)
     {
+        Debug.Log($"Updating Dominant Frequency to: {value}");
         hapticManager.dominantFrequency = value;
         dominantFrequency.currentValueLabel.text = string.Format("{0:F0} Hz", value);
     }

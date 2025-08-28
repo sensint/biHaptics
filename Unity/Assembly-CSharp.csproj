@@ -97,6 +97,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\Obi\Samples\Common\SampleResources\Scripts\AddRandomVelocity.cs" />
     <Compile Include="Assets\Obi\Samples\RopeAndRod\SampleResources\Scripts\HighlightCollidingRopes.cs" />
+    <Compile Include="Assets\Scripts\Others\VRUIPointer.cs" />
     <Compile Include="Assets\Obi\Samples\RopeAndRod\SampleResources\Scripts\CharacterControl2D.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\Obi\Samples\Common\SampleResources\Scripts\FPSDisplay.cs" />
@@ -118,7 +119,6 @@
     <Compile Include="Assets\Obi\Samples\RopeAndRod\SampleResources\Scripts\RopeNet.cs" />
     <Compile Include="Assets\Scripts\HapticController.cs" />
     <Compile Include="Assets\Scripts\Exp1aFinal.cs" />
-    <Compile Include="Assets\Scripts\VRUIPointer.cs" />
     <Compile Include="Assets\Obi\Samples\RopeAndRod\SampleResources\Scripts\RopeBetweenTwoPoints.cs" />
     <Compile Include="Assets\Scripts\Base\TimeDelayModulation.cs" />
     <Compile Include="Assets\Scripts\Base\ButtonPress.cs" />
