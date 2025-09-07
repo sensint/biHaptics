@@ -1,103 +1,131 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class HapticInteractionManager : MonoBehaviour
 {
-    [Header("Configuration")]
-    public bool rightHandIsActor = true;
-    [Header("Dominant Hand Haptics (Controllable by UI)")]
+    // REMOVED: The static 'rightHandIsActor' boolean has been removed.
+
+    [Header("Haptic Settings")]
+    [Tooltip("Haptics for the hand that is moving more (the 'actor' hand).")]
     [Range(0f, 1f)]
     public float dominantAmplitude = 1.0f;
     [Range(80f, 200f)]
     public float dominantFrequency = 150f;
+    [Tooltip("Number of discrete steps (bins) for haptic feedback over a range of motion.")]
     [Range(1, 400)]
-    public int grains = 200; // Number of non-dominant pulses over a range
+    public int grains = 200;
 
-    [Header("Non-Dominant Multipliers (Controllable by UI)")]
+    [Header("Crosstalk Haptics (for the other hand)")]
+    [Tooltip("Amplitude multiplier for the non-dominant hand.")]
     [Range(0f, 2f)]
     public float amplitudeMultiplier = 1.0f;
+    [Tooltip("Frequency multiplier for the non-dominant hand.")]
     [Range(0f, 2f)]
     public float frequencyMultiplier = 1.0f;
+    [Tooltip("Delay in milliseconds before the non-dominant hand vibrates.")]
     [Range(0f, 500f)]
     public float delayMs = 0f;
+    [Tooltip("Controls how often the non-dominant hand pulses. 1 = always, 0.5 = every other bin, 0 = never.")]
     [Range(0f, 1f)]
     public float grainMultiplier = 1.0f;
 
     [Header("Motion Detection Settings")]
     public Transform leftHandTransform;
     public Transform rightHandTransform;
+    [Tooltip("The minimum distance the hand must move in one frame to be considered 'moving'.")]
     public float movementThreshold = 0.001f;
+
+    [Header("Interaction Range")]
+    [Tooltip("The minimum distance between hands for stretching haptics to start.")]
     public float minimumDistance = 0.05f;
+    [Tooltip("The maximum distance between hands for stretching haptics.")]
     public float maximumDistance = 1.0f;
 
     // Private internal state
     private HapticController hapticController;
     private Vector3 lastLeftPos, lastRightPos;
-    private int lastRelativeBin = -1;
-    private int grainPulseInterval = 1;
-    private const int GRAIN_SCALING_FACTOR = 200; // Used to calculate pulse interval
+    private Quaternion lastLeftRot, lastRightRot; // ADDED: To track rotation for future enhancements
+
+    // CHANGED: Use separate bin trackers for each interaction type for more reliable haptics.
+    private int lastStretchingBin = -1;
+    private int lastBendingBin = -1;
+    private int lastTwistingBin = -1;
+
     private void Awake()
     {
-        // Ensure HapticController exists on this GameObject
         hapticController = GetComponent<HapticController>();
         if (hapticController == null)
             hapticController = gameObject.AddComponent<HapticController>();
 
-        if (leftHandTransform != null) lastLeftPos = leftHandTransform.position;
-        if (rightHandTransform != null) lastRightPos = rightHandTransform.position;
+        if (leftHandTransform != null)
+        {
+            lastLeftPos = leftHandTransform.position;
+            lastLeftRot = leftHandTransform.rotation; // ADDED: Initialize last rotation
+        }
+        if (rightHandTransform != null)
+        {
+            lastRightPos = rightHandTransform.position;
+            lastRightRot = rightHandTransform.rotation; // ADDED: Initialize last rotation
+        }
     }
 
     private void Update()
     {
-        // Detect movement (TO ADD: ROTATIONAL CHECKS AS WELL. BECAUSE WITHOUT A POSITION CHANGE I CAN ROTATE)
-        bool leftMoved = (leftHandTransform.position - lastLeftPos).magnitude > movementThreshold;
-        bool rightMoved = (rightHandTransform.position - lastRightPos).magnitude > movementThreshold;
+        if (leftHandTransform == null || rightHandTransform == null) return;
 
-        if (leftMoved || rightMoved)
+        // CHANGED: Logic to determine the dominant hand dynamically.
+        // 1. Calculate positional movement magnitude for both hands.
+        float leftMovement = (leftHandTransform.position - lastLeftPos).magnitude;
+        float rightMovement = (rightHandTransform.position - lastRightPos).magnitude;
+
+        bool hasMoved = leftMovement > movementThreshold || rightMovement > movementThreshold;
+
+        if (hasMoved)
         {
-            HandleRelativeStretchingBins(leftMoved, rightMoved);
-            HandleRelativeBendingBins(leftMoved, rightMoved);
-            HandleRelativeTwistingBins(leftMoved, rightMoved);
+            // 2. The "Actor" hand is the one that moved more. The "Reactor" is the other.
+            bool isRightHandActor = rightMovement > leftMovement;
+
+            OVRInput.Controller actorController = isRightHandActor ? OVRInput.Controller.RTouch : OVRInput.Controller.LTouch;
+            OVRInput.Controller reactorController = isRightHandActor ? OVRInput.Controller.LTouch : OVRInput.Controller.RTouch;
+
+            // 3. Pass the determined actor/reactor controllers to the interaction handlers.
+            HandleRelativeStretchingBins(actorController, reactorController);
+            HandleRelativeBendingBins(actorController, reactorController);
+            HandleRelativeTwistingBins(actorController, reactorController);
         }
+
+        // Update last known positions and rotations for the next frame
         lastLeftPos = leftHandTransform.position;
         lastRightPos = rightHandTransform.position;
+        lastLeftRot = leftHandTransform.rotation;
+        lastRightRot = rightHandTransform.rotation;
     }
 
-    private void ApplyCrosstalk(bool leftMoved, bool rightMoved)
+    // CHANGED: This function now takes the actor/reactor controllers and the current interaction bin as arguments.
+    private void ApplyCrosstalk(OVRInput.Controller actorController, OVRInput.Controller reactorController, int currentBin)
     {
-        bool dominantMoved = rightHandIsActor ? rightMoved : leftMoved;
-        OVRInput.Controller dominantController = rightHandIsActor ? OVRInput.Controller.RTouch : OVRInput.Controller.LTouch;
-        OVRInput.Controller nonDominantController = rightHandIsActor ? OVRInput.Controller.LTouch : OVRInput.Controller.RTouch;
-
-        // --- Dominant Hand Vibration ---
+        // --- Actor (Dominant) Hand Vibration ---
         float dominantDuration = 1.0f / dominantFrequency;
-        StartCoroutine(hapticController.StartVibrationForDuration(dominantController, dominantFrequency, dominantAmplitude, dominantDuration));
+        StartCoroutine(hapticController.StartVibrationForDuration(actorController, dominantFrequency, dominantAmplitude, dominantDuration));
 
-        // --- Non-Dominant Hand Vibration ---
-        // This simulates granular feedback by only vibrating on certain intervals
-        // Calculate the interval for non-dominant pulses. A multiplier of 0.5 means an interval of 2 (vibrate every 2nd bin).
+        // --- Reactor (Non-Dominant) Hand Vibration ---
         int nonDominantInterval = (grainMultiplier > 0) ? Mathf.RoundToInt(1.0f / grainMultiplier) : int.MaxValue;
 
-        // Trigger if the current bin number is a multiple of the calculated interval.
-        if (lastRelativeBin % nonDominantInterval == 0)
+        // Trigger the non-dominant pulse based on the current interaction bin and the grain multiplier.
+        if (currentBin % nonDominantInterval == 0)
         {
-            // Determines how many dominant pulses occur before one non-dominant pulse
-            grainPulseInterval = Mathf.Max(1, GRAIN_SCALING_FACTOR / grains);
-
-            // Trigger the non-dominant vibration based on the grain interval
             float nonDomAmp = dominantAmplitude * amplitudeMultiplier;
             float nonDomFreq = dominantFrequency * frequencyMultiplier;
             float nonDomDuration = 1.0f / nonDomFreq;
 
             if (delayMs > 0)
             {
-                StartCoroutine(DelayedVibration(nonDominantController, delayMs / 1000f, nonDomAmp, nonDomFreq, nonDomDuration));
+                StartCoroutine(DelayedVibration(reactorController, delayMs / 1000f, nonDomAmp, nonDomFreq, nonDomDuration));
             }
             else
             {
-                StartCoroutine(hapticController.StartVibrationForDuration(nonDominantController, nonDomFreq, nonDomAmp, nonDomDuration));
+                StartCoroutine(hapticController.StartVibrationForDuration(reactorController, nonDomFreq, nonDomAmp, nonDomDuration));
             }
         }
     }
@@ -108,45 +136,55 @@ public class HapticInteractionManager : MonoBehaviour
         yield return hapticController.StartVibrationForDuration(controller, freq, amp, duration);
     }
 
-    private void HandleRelativeStretchingBins(bool leftMoved, bool rightMoved)
+    // --- Interaction Handlers ---
+
+    // CHANGED: Methods now receive actor/reactor controllers and pass the current bin to ApplyCrosstalk.
+    private void HandleRelativeStretchingBins(OVRInput.Controller actor, OVRInput.Controller reactor)
     {
         float distance = Mathf.Clamp((rightHandTransform.position - leftHandTransform.position).magnitude, minimumDistance, maximumDistance);
         float normalizedDistance = (distance - minimumDistance) / (maximumDistance - minimumDistance);
         int binId = Mathf.RoundToInt(normalizedDistance * (grains - 1));
-        if (binId != lastRelativeBin)
+
+        if (binId != lastStretchingBin)
         {
-            ApplyCrosstalk(leftMoved, rightMoved);
-            lastRelativeBin = binId;
+            ApplyCrosstalk(actor, reactor, binId);
+            lastStretchingBin = binId;
         }
     }
 
-    private void HandleRelativeBendingBins(bool leftMoved, bool rightMoved)
+    private void HandleRelativeBendingBins(OVRInput.Controller actor, OVRInput.Controller reactor)
     {
         Quaternion relRot = Quaternion.Inverse(leftHandTransform.rotation) * rightHandTransform.rotation;
         Vector3 relAngles = NormalizeAngles(relRot.eulerAngles);
+
         float rmsAngle = Mathf.Sqrt((relAngles.x * relAngles.x + relAngles.y * relAngles.y + relAngles.z * relAngles.z) / 3f);
         float normalizedAngle = Mathf.Clamp01(rmsAngle / 180f);
         int binId = Mathf.RoundToInt(normalizedAngle * (grains - 1));
-        if (binId != lastRelativeBin)
+
+        if (binId != lastBendingBin)
         {
-            ApplyCrosstalk(leftMoved, rightMoved);
-            lastRelativeBin = binId;
+            ApplyCrosstalk(actor, reactor, binId);
+            lastBendingBin = binId;
         }
     }
 
-    private void HandleRelativeTwistingBins(bool leftMoved, bool rightMoved)
+    private void HandleRelativeTwistingBins(OVRInput.Controller actor, OVRInput.Controller reactor)
     {
         Quaternion relRot = Quaternion.Inverse(leftHandTransform.rotation) * rightHandTransform.rotation;
         Vector3 relAngles = NormalizeAngles(relRot.eulerAngles);
+
         float twist = relAngles.z;
         float normalizedTwist = Mathf.Clamp01((twist + 180f) / 360f);
         int binId = Mathf.RoundToInt(normalizedTwist * (grains - 1));
-        if (binId != lastRelativeBin)
+
+        if (binId != lastTwistingBin)
         {
-            ApplyCrosstalk(leftMoved, rightMoved);
-            lastRelativeBin = binId;
+            ApplyCrosstalk(actor, reactor, binId);
+            lastTwistingBin = binId;
         }
     }
+
+    // --- Helper Functions ---
 
     private Vector3 NormalizeAngles(Vector3 angles)
     {
@@ -156,13 +194,11 @@ public class HapticInteractionManager : MonoBehaviour
         return angles;
     }
 
+    // CHANGED: A more robust method for wrapping angles to the [-180, 180] range.
     private float NormalizeAngle(float angle)
     {
-        angle = angle % 360f;
-        if (angle > 180f) angle -= 360f;
-        if (angle < -180f) angle += 360f; // Ensure range is consistently -180 to 180
+        while (angle <= -180f) angle += 360f;
+        while (angle > 180f) angle -= 360f;
         return angle;
     }
-
 }
-
