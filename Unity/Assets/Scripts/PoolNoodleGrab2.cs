@@ -36,7 +36,7 @@ public class PoolNoodleGrab2 : MonoBehaviour
             ToggleAttachment(rightAttachment, rightHandAnchor, rod.activeParticleCount - 1);
 
         // Reset noodle on "B" (controller B or keyboard)
-        if (OVRInput.GetDown(OVRInput.Button.Two) || Input.GetKeyDown(KeyCode.B))
+        if (OVRInput.GetDown(OVRInput.Button.Two) || Input.GetKeyDown(KeyCode.P))
             ResetRod();
     }
 
