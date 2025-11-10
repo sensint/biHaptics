@@ -7503,7 +7503,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Dominant Hand
+  m_text: Leader Hand
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9419,6 +9419,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OVRControllers
       objectReference: {fileID: 0}
+    - target: {fileID: 4171257702361650819, guid: fbfc588a949bb1a42b20e5bddc4cf8cf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 19.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4463783186525425583, guid: fbfc588a949bb1a42b20e5bddc4cf8cf, type: 3}
       propertyPath: _interactors.Array.size
       value: 1
@@ -9429,27 +9433,55 @@ PrefabInstance:
       objectReference: {fileID: 850256571}
     - target: {fileID: 5147314049378505967, guid: fbfc588a949bb1a42b20e5bddc4cf8cf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.214
+      value: -3.5114
       objectReference: {fileID: 0}
     - target: {fileID: 5147314049378505967, guid: fbfc588a949bb1a42b20e5bddc4cf8cf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.214
+      value: -1.6072
       objectReference: {fileID: 0}
     - target: {fileID: 5147314049378505967, guid: fbfc588a949bb1a42b20e5bddc4cf8cf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.471
+      value: 1.1265
       objectReference: {fileID: 0}
     - target: {fileID: 5147314049378505967, guid: fbfc588a949bb1a42b20e5bddc4cf8cf, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9931503
+      value: 0.89236563
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147314049378505967, guid: fbfc588a949bb1a42b20e5bddc4cf8cf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.062400274
       objectReference: {fileID: 0}
     - target: {fileID: 5147314049378505967, guid: fbfc588a949bb1a42b20e5bddc4cf8cf, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.11684401
+      value: -0.4458898
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147314049378505967, guid: fbfc588a949bb1a42b20e5bddc4cf8cf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.031179648
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147314049378505967, guid: fbfc588a949bb1a42b20e5bddc4cf8cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5147314049378505967, guid: fbfc588a949bb1a42b20e5bddc4cf8cf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -13.42
+      value: -53.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147314049378505967, guid: fbfc588a949bb1a42b20e5bddc4cf8cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473972093104420693, guid: fbfc588a949bb1a42b20e5bddc4cf8cf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473972093104420693, guid: fbfc588a949bb1a42b20e5bddc4cf8cf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473972093104420693, guid: fbfc588a949bb1a42b20e5bddc4cf8cf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7698479342617112532, guid: fbfc588a949bb1a42b20e5bddc4cf8cf, type: 3}
       propertyPath: _cameraRigRef
@@ -9459,6 +9491,18 @@ PrefabInstance:
       propertyPath: _trackingToWorldTransformer
       value: 
       objectReference: {fileID: 1908506188}
+    - target: {fileID: 8932077450401638110, guid: fbfc588a949bb1a42b20e5bddc4cf8cf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -65.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932077450401638110, guid: fbfc588a949bb1a42b20e5bddc4cf8cf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932077450401638110, guid: fbfc588a949bb1a42b20e5bddc4cf8cf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -41.09
+      objectReference: {fileID: 0}
     - target: {fileID: 9193267195763093205, guid: fbfc588a949bb1a42b20e5bddc4cf8cf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -10620,8 +10664,8 @@ Transform:
   m_GameObject: {fileID: 452443371}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.17, y: 9.79, z: -1.4}
-  m_LocalScale: {x: 0.28, y: 0.36, z: 0.36}
+  m_LocalPosition: {x: -2.36, y: 9.111, z: -1.288}
+  m_LocalScale: {x: 0.28, y: 0.36, z: 0.49}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1042469931}
@@ -15605,7 +15649,7 @@ Transform:
   m_GameObject: {fileID: 705507993}
   serializedVersion: 2
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: -4.49, y: 3, z: -2.592}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21006,8 +21050,8 @@ Transform:
   m_GameObject: {fileID: 883302062}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -0.07, y: 0.11, z: 0.1}
+  m_LocalPosition: {x: -8.192, y: -26.48, z: 13.99}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 909957959}
@@ -21024,7 +21068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4747da60837c44f9ba4b4a86879bcc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: 51d587eafcd13384bafd060c5bc7cb82, type: 2}
+  material: {fileID: 2100000, guid: f342c944c10cc4c9188a4f352c6a6eee, type: 2}
   renderParameters:
     layer: 0
     lightProbeUsage: 1
@@ -22064,173 +22108,343 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   solverIndices:
-    serializedContents: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f00000020000000
+    serializedContents: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f000000200000002100000022000000230000002400000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f000000300000003100000032000000330000003400000035000000360000003700000038000000390000003a0000003b0000003c0000003d0000003e0000003f0000004000000041000000
     m_AlignBytes: 16
   groupID: 1
   m_CollisionMaterial: {fileID: 0}
   m_SurfaceCollisions: 0
   m_MassScale: 0.2
   m_SelfCollisions: 0
-  restLength_: 1.56148
+  restLength_: 3.1783178
   elements:
   - particle1: 0
     particle2: 1
-    restLength: 0.04701282
+    restLength: 0.04900039
     constraintForce: 0
     tearResistance: 0
   - particle1: 1
     particle2: 2
-    restLength: 0.04900039
+    restLength: 0.048968524
     constraintForce: 0
     tearResistance: 0
   - particle1: 2
     particle2: 3
-    restLength: 0.048968524
+    restLength: 0.04966399
     constraintForce: 0
     tearResistance: 0
   - particle1: 3
     particle2: 4
-    restLength: 0.04966399
+    restLength: 0.048427574
     constraintForce: 0
     tearResistance: 0
   - particle1: 4
     particle2: 5
-    restLength: 0.048427574
+    restLength: 0.048778053
     constraintForce: 0
     tearResistance: 0
   - particle1: 5
     particle2: 6
-    restLength: 0.048778053
+    restLength: 0.049384557
     constraintForce: 0
     tearResistance: 0
   - particle1: 6
     particle2: 7
-    restLength: 0.049384557
+    restLength: 0.04834033
     constraintForce: 0
     tearResistance: 0
   - particle1: 7
     particle2: 8
-    restLength: 0.04834033
+    restLength: 0.049455073
     constraintForce: 0
     tearResistance: 0
   - particle1: 8
     particle2: 9
-    restLength: 0.049455073
+    restLength: 0.048345543
     constraintForce: 0
     tearResistance: 0
   - particle1: 9
     particle2: 10
-    restLength: 0.048345543
+    restLength: 0.049255565
     constraintForce: 0
     tearResistance: 0
   - particle1: 10
     particle2: 11
-    restLength: 0.049255565
+    restLength: 0.048554122
     constraintForce: 0
     tearResistance: 0
   - particle1: 11
     particle2: 12
-    restLength: 0.048554122
+    restLength: 0.049027637
     constraintForce: 0
     tearResistance: 0
   - particle1: 12
     particle2: 13
-    restLength: 0.049027637
+    restLength: 0.048779
     constraintForce: 0
     tearResistance: 0
   - particle1: 13
     particle2: 14
-    restLength: 0.048779
+    restLength: 0.04887027
     constraintForce: 0
     tearResistance: 0
   - particle1: 14
     particle2: 15
-    restLength: 0.04887027
+    restLength: 0.0489097
     constraintForce: 0
     tearResistance: 0
   - particle1: 15
     particle2: 16
-    restLength: 0.0489097
+    restLength: 0.048820704
     constraintForce: 0
     tearResistance: 0
   - particle1: 16
     particle2: 17
-    restLength: 0.048820704
+    restLength: 0.048902303
     constraintForce: 0
     tearResistance: 0
   - particle1: 17
     particle2: 18
-    restLength: 0.048902303
+    restLength: 0.048883673
     constraintForce: 0
     tearResistance: 0
   - particle1: 18
     particle2: 19
-    restLength: 0.048883673
+    restLength: 0.048771933
     constraintForce: 0
     tearResistance: 0
   - particle1: 19
     particle2: 20
-    restLength: 0.048771933
+    restLength: 0.04903499
     constraintForce: 0
     tearResistance: 0
   - particle1: 20
     particle2: 21
-    restLength: 0.04903499
+    restLength: 0.048595004
     constraintForce: 0
     tearResistance: 0
   - particle1: 21
     particle2: 22
-    restLength: 0.048595004
+    restLength: 0.04920537
     constraintForce: 0
     tearResistance: 0
   - particle1: 22
     particle2: 23
-    restLength: 0.04920537
+    restLength: 0.048516985
     constraintForce: 0
     tearResistance: 0
   - particle1: 23
     particle2: 24
-    restLength: 0.048516985
+    restLength: 0.04922882
     constraintForce: 0
     tearResistance: 0
   - particle1: 24
     particle2: 25
-    restLength: 0.04922882
+    restLength: 0.048749655
     constraintForce: 0
     tearResistance: 0
   - particle1: 25
     particle2: 26
-    restLength: 0.048749655
+    restLength: 0.048701033
     constraintForce: 0
     tearResistance: 0
   - particle1: 26
     particle2: 27
-    restLength: 0.048701033
+    restLength: 0.04944974
     constraintForce: 0
     tearResistance: 0
   - particle1: 27
     particle2: 28
-    restLength: 0.04944974
+    restLength: 0.04833326
     constraintForce: 0
     tearResistance: 0
   - particle1: 28
     particle2: 29
-    restLength: 0.04833326
+    restLength: 0.04809263
     constraintForce: 0
     tearResistance: 0
   - particle1: 29
     particle2: 30
-    restLength: 0.04809263
+    restLength: 0.048686285
     constraintForce: 0
     tearResistance: 0
   - particle1: 30
     particle2: 31
-    restLength: 0.048686285
+    restLength: 0.048734512
     constraintForce: 0
     tearResistance: 0
   - particle1: 31
     particle2: 32
-    restLength: 0.048734512
+    restLength: 0.010413668
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 32
+    particle2: 33
+    restLength: 0.04961583
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 33
+    particle2: 34
+    restLength: 0.05008013
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 34
+    particle2: 35
+    restLength: 0.050197188
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 35
+    particle2: 36
+    restLength: 0.04821938
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 36
+    particle2: 37
+    restLength: 0.05070007
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 37
+    particle2: 38
+    restLength: 0.04817026
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 38
+    particle2: 39
+    restLength: 0.04995529
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 39
+    particle2: 40
+    restLength: 0.04905015
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 40
+    particle2: 41
+    restLength: 0.049214028
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 41
+    particle2: 42
+    restLength: 0.04989598
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 42
+    particle2: 43
+    restLength: 0.048777822
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 43
+    particle2: 44
+    restLength: 0.049649417
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 44
+    particle2: 45
+    restLength: 0.049262784
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 45
+    particle2: 46
+    restLength: 0.04921162
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 46
+    particle2: 47
+    restLength: 0.049518187
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 47
+    particle2: 48
+    restLength: 0.049280595
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 48
+    particle2: 49
+    restLength: 0.04925804
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 49
+    particle2: 50
+    restLength: 0.049332894
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 50
+    particle2: 51
+    restLength: 0.04951506
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 51
+    particle2: 52
+    restLength: 0.04898272
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 52
+    particle2: 53
+    restLength: 0.04966945
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 53
+    particle2: 54
+    restLength: 0.049358778
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 54
+    particle2: 55
+    restLength: 0.048743147
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 55
+    particle2: 56
+    restLength: 0.05018524
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 56
+    particle2: 57
+    restLength: 0.048397653
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 57
+    particle2: 58
+    restLength: 0.050339226
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 58
+    particle2: 59
+    restLength: 0.04859608
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 59
+    particle2: 60
+    restLength: 0.05021708
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 60
+    particle2: 61
+    restLength: 0.048016965
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 61
+    particle2: 62
+    restLength: 0.050954074
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 62
+    particle2: 63
+    restLength: 0.04944297
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 63
+    particle2: 64
+    restLength: 0.04965776
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 64
+    particle2: 65
+    restLength: 0.024958208
+    constraintForce: 0
+    tearResistance: 0
+  - particle1: 65
+    particle2: 0
+    restLength: 0.04701282
     constraintForce: 0
     tearResistance: 0
   _aerodynamicsEnabled: 1
@@ -22700,7 +22914,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.02, y: 9.7999, z: -2.68}
-  m_LocalScale: {x: 0.22, y: 0.28, z: 0.28}
+  m_LocalScale: {x: 0.22, y: 0.03, z: 0.03}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 883302063}
@@ -24827,8 +25041,8 @@ Transform:
   m_GameObject: {fileID: 1042469930}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.781, y: 0, z: -1.3711}
-  m_LocalScale: {x: 0.9, y: 0.58, z: 0.23}
+  m_LocalPosition: {x: 2.125, y: 0.313, z: -1.3711}
+  m_LocalScale: {x: 0.53, y: 0.58, z: 0.23}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 452443373}
@@ -24885,7 +25099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4747da60837c44f9ba4b4a86879bcc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: a0a5f9e13fa7c47f78547e54896609da, type: 2}
+  material: {fileID: 2100000, guid: d7ecd8db85bf61440b7ca5d302afd010, type: 2}
   renderParameters:
     layer: 0
     lightProbeUsage: 1
@@ -30721,15 +30935,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.13
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.8
+      value: 9.95
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.81
+      value: -3.02
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -31166,7 +31380,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1313724914}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.53}
+  m_LocalPosition: {x: 0, y: 0, z: 1.076}
   m_LocalScale: {x: 0.008, y: 0.008, z: 0.008}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -31180,7 +31394,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 10}
+  m_AnchoredPosition: {x: 0, y: 9.827}
   m_SizeDelta: {x: 320, y: 310}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1316067065
@@ -33912,52 +34126,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 428144, guid: 43d083e8215b4544594282d6c144d7ba, type: 3}
   m_PrefabInstance: {fileID: 1437347495}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1446682205
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1446682207}
-  - component: {fileID: 1446682206}
-  m_Layer: 0
-  m_Name: BurstCollisionWorld
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1446682206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1446682205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1a161c4294214a4fbcb7e9e94800494, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cellSpans:
-    m_AlignBytes: 16
---- !u!4 &1446682207
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1446682205}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1451657756
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34249,7 +34417,7 @@ Transform:
   m_GameObject: {fileID: 1459335230}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.241, z: 0.079}
+  m_LocalPosition: {x: 0, y: 0.241, z: 0.701}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -37055,6 +37223,52 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1534238917
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1534238919}
+  - component: {fileID: 1534238918}
+  m_Layer: 0
+  m_Name: BurstCollisionWorld
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1534238918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534238917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1a161c4294214a4fbcb7e9e94800494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cellSpans:
+    m_AlignBytes: 16
+--- !u!4 &1534238919
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534238917}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1535077699
 GameObject:
   m_ObjectHideFlags: 0
@@ -43587,7 +43801,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 5, y: 0}
+  m_AnchoredPosition: {x: 5, y: 3.3}
   m_SizeDelta: {x: 270, y: 20}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1917556435
@@ -43610,10 +43824,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hapti.Pair Toolkit
+  m_text: "DviHast\u012Bya Toolkit"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
-  m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -48143,4 +48357,4 @@ SceneRoots:
   - {fileID: 452443373}
   - {fileID: 909957959}
   - {fileID: 1560118368}
-  - {fileID: 1446682207}
+  - {fileID: 1534238919}
