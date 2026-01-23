@@ -106,4 +106,4 @@ Project Link: [https://github.com/sensint/HapticGasPedal](https://github.com/sen
 [issues-url]: https://github.com/sensint/HapticGasPedal/issues
 [license-shield]: https://img.shields.io/github/license/sensint/HapticGasPedal.svg?style=for-the-badge
 [license-url]: https://github.com/sensint/HapticGasPedal/blob/master/LICENSE
-[banner-image]: assets/img/Banner_GasPedal.png
+[banner-image]: assets/img/Banner_Bimanual.png
