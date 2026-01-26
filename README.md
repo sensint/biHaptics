@@ -96,11 +96,11 @@ Project Link: [https://github.com/sensint/HapticGasPedal](https://github.com/sen
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/sensint/HapticGasPedal.svg?style=for-the-badge
-[contributors-url]: https://github.com/sensint/HapticGasPedal/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/sensint/HapticGasPedal.svg?style=for-the-badge
-[forks-url]: https://github.com/sensint/HapticGasPedal/network/members
-[stars-shield]: https://img.shields.io/github/stars/sensint/HapticGasPedal.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/sensint/biHaptics.svg?style=for-the-badge
+[contributors-url]: https://github.com/sensint/biHaptics/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/sensint/biHaptics.svg?style=for-the-badge
+[forks-url]: https://github.com/sensint/biHaptics/network/members
+[stars-shield]: https://img.shields.io/github/stars/sensint/biHaptics.svg?style=for-the-badge
 [stars-url]: https://github.com/sensint/HapticGasPedal/stargazers
 [issues-shield]: https://img.shields.io/github/issues/sensint/HapticGasPedal.svg?style=for-the-badge
 [issues-url]: https://github.com/sensint/HapticGasPedal/issues
