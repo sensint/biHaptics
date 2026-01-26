@@ -27,9 +27,9 @@
     <b>We'd love to get your feedback and know if you want to explore this research further.</b>
     <br />
 <!--     <br />
-    <a href="https://github.com/sensint/HapticGasPedal/issues">Report Bug</a>
+    <a href="https://github.com/sensint/biHaptics/issues">Report Bug</a>
     ·
-    <a href="https://github.com/sensint/HapticGasPedal/issues">Request Feature</a> -->
+    <a href="https://github.com/sensint/biHaptics/issues">Request Feature</a> -->
   </p>
 </div>
 
@@ -48,7 +48,7 @@ Perceiving material properties such as elasticity, flexibility, and torsion is i
 Download the code from the GitHub website or clone repo using your favorite git-client software or with the following command:
 
    ```sh
-   git clone https://github.com/sensint/HapticGasPedal.git
+   git clone https://github.com/sensint/biHaptics.git
    ```
 - To run the processing script (Targetting_Task.pde) as is, please add all the trajectories in the same folder as the processing file.
 - Assign the right port for the serial communication.
@@ -81,7 +81,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Sensorimotor Interaction Group - [website](https://sensint.mpi-inf.mpg.de/) - [@sensintgroup](https://twitter.com/sensintgroup)
 
-Project Link: [https://github.com/sensint/HapticGasPedal](https://github.com/sensint/HapticGasPedal)
+Project Link: [https://github.com/sensint/biHaptics](https://github.com/sensint/biHaptics)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -101,9 +101,9 @@ Project Link: [https://github.com/sensint/HapticGasPedal](https://github.com/sen
 [forks-shield]: https://img.shields.io/github/forks/sensint/biHaptics.svg?style=for-the-badge
 [forks-url]: https://github.com/sensint/biHaptics/network/members
 [stars-shield]: https://img.shields.io/github/stars/sensint/biHaptics.svg?style=for-the-badge
-[stars-url]: https://github.com/sensint/HapticGasPedal/stargazers
-[issues-shield]: https://img.shields.io/github/issues/sensint/HapticGasPedal.svg?style=for-the-badge
-[issues-url]: https://github.com/sensint/HapticGasPedal/issues
-[license-shield]: https://img.shields.io/github/license/sensint/HapticGasPedal.svg?style=for-the-badge
-[license-url]: https://github.com/sensint/HapticGasPedal/blob/master/LICENSE
+[stars-url]: https://github.com/sensint/biHaptics/stargazers
+[issues-shield]: https://img.shields.io/github/issues/sensint/biHaptics.svg?style=for-the-badge
+[issues-url]: https://github.com/sensint/biHaptics/issues
+[license-shield]: https://img.shields.io/github/license/sensint/biHaptics.svg?style=for-the-badge
+[license-url]: https://github.com/sensint/biHaptics/blob/master/LICENSE
 [banner-image]: assets/img/Banner_Bimanual.png
