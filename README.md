@@ -39,6 +39,10 @@
 
 Perceiving material properties such as elasticity, flexibility, and torsion is inherently bimanual, as we rely on the relative motion of our hands to form a unified sense of materiality. Yet, most vibrotactile material rendering approaches are limited to a single hand or finger. While prior work has explored bimanual haptic interfaces, most depend on specialized hardware for specific interactions. In this paper, we demonstrate design strategies to support bimanual material exploration through motion-coupled vibrotactile feedback. Our technique introduces variable crosstalk between the controllers' vibration to evoke connectedness, making two unconnected devices feel as though they manipulate a single object. The technique generalizes motion-coupled feedback approaches beyond previous single-point explorations. Through two user studies, we show that this approach (1) significantly enhances perceived connectedness and (2) conveys distinct material qualities such as elasticity and torsion. Finally, we present Dvihastīya, an authoring tool for designing connected bimanual experiences in virtual reality.
 
+In this repository, we present two main contributions linked to the paper:
+1. Code for replicating the psychophysics and qualitative studies (as mentioned in the paper).
+2. Dvihastīya authoring tool for designing connected bimanual material experiences with crosstalk based vibrotactile feedback
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Built With
@@ -50,9 +54,64 @@ Download the code from the GitHub website or clone repo using your favorite git-
    ```sh
    git clone https://github.com/sensint/biHaptics.git
    ```
-- To run the processing script (Targetting_Task.pde) as is, please add all the trajectories in the same folder as the processing file.
-- Assign the right port for the serial communication.
-- Run the script
+- Open the folder 'Unity' in the Unity software.
+- Connect the Meta Quest 3 headset with the quest link and enable the quest link communication.
+- Run the unity scene.
+
+## Firmware
+
+All firmware and interaction logic were developed in **Unity 2022.3.34f1**.
+This Unity project contains the core algorithms for rendering **bimanual vibrotactile feedback**, as well as the **Dvihastīya authoring tool**.
+
+### User Studies
+The same Unity project was used to conduct all user studies. The experimental flow is controlled via a dedicated script attached to a Unity GameObject.
+
+##### Setup Instructions
+
+1. **Attach the Script**
+Attach the user-study script to a GameObject in the scene.
+
+2. **Enable the GameObject**
+Toggle the GameObject **on** in the Unity Inspector to activate the study logic.
+
+3. **Configure Experimental Conditions**
+- A default sequence of experimental conditions is automatically populated when the script is attached.
+- This sequence can be modified in the Inspector to match the desired study design.
+
+4. **Assign Controllers**
+Assign the following objects in the designated fields:
+- `LeftHandController`
+- `RightHandController`
+
+5. **Run the Scene**
+Start the scene to begin the user study.
+
+#### Notes
+
+- No visual feedback was used during the user studies.
+- All interactions were conveyed exclusively through vibrotactile feedback.
+
+## Firmware
+Overall, unity version 2022.3.34f1 was used to develop the algorithms for rendering bimanual vibrotactile feedback as well as Dvihastīya authoring tool.
+
+#### User Studies
+
+For running the user studies:
++ Attach the script on a game object.
++ Toggle the game object on in the inspector.
++ After attaching the script you will see a default sequence of conditions which can be changed as desired.
++ Add lefthandcontroller and righthandcontroller object in the dedicated areas.
++ Run the scene.
++ Note: No visuals were used for the user studies.
+
+#### Dvihastīya Authoring Tool
+
+To enable the authoring tool, please use the following steps:
++ For visually rendering the rubber-band, pool-noodle, and braided-wire, [obirope](https://assetstore.unity.com/packages/tools/physics/obi-rope-55579?aid=1011l34eQ) was used.
+
+## Hardware
+
+For rendering the designed vibrotactile feedback for both the hands, we used both the hand controllers of Meta Quest 3 headset. No further modifications to the commercially available hardware are made. The refresh rate of the Quest 3 was set to be 120Hz and 1440 × 1600 resolution per eye. The Quest was connected to a PC (Intel Core i7-9700, 32 GB RAM, NVIDIA RTX 2080 Ti) via Quest Link (serial communication using USB connection) to minimize delays.
 
 ## Contributing
 
