@@ -57,6 +57,8 @@ Download the code from the GitHub website or clone repo using your favorite git-
 - Open the folder 'Unity' in the Unity software.
 - Connect the Meta Quest 3 headset with the quest link and enable the quest link communication.
 - Run the unity scene.
+- Hold the left and right-hand controllers in the corresponding hands.
+- Moving one or both hands will trigger vibrotactile pulses in either or both hands depending on the crosstalk level.
 
 ## Firmware
 
@@ -68,41 +70,26 @@ The same Unity project was used to conduct all user studies. The experimental fl
 
 ##### Setup Instructions
 
-1. **Attach the Script**
-Attach the user-study script to a GameObject in the scene.
+1. **Attach the Script:** Attach the user-study script (Exp1aFinal.cs for study 1; Exp2_v1.cs for study 2) to a GameObject in the scene.
 
-2. **Enable the GameObject**
-Toggle the GameObject **on** in the Unity Inspector to activate the study logic.
+2. **Enable the GameObject:** Toggle the GameObject **on** in the Unity Inspector to activate the study logic.
 
-3. **Configure Experimental Conditions**
-- A default sequence of experimental conditions is automatically populated when the script is attached.
+3. **Configure Experimental Conditions:**
+- A default sequence of experimental conditions is present when the script is attached, but it can be changed as desired.
 - This sequence can be modified in the Inspector to match the desired study design.
 
-4. **Assign Controllers**
-Assign the following objects in the designated fields:
+4. **Assign Controllers:** Assign the following objects in the designated fields:
 - `LeftHandController`
 - `RightHandController`
 
-5. **Run the Scene**
-Start the scene to begin the user study.
+5. **Run the Scene:** Start the scene to begin the user study.
+
+6. **Switching between conditions:** Press `space-bar` on the keyboard once will pause the ongoing condition and pressing the second time will move it to the next condition. Pressing `b` on the keyboard goes back to the previous condition.
 
 #### Notes
 
 - No visual feedback was used during the user studies.
 - All interactions were conveyed exclusively through vibrotactile feedback.
-
-## Firmware
-Overall, unity version 2022.3.34f1 was used to develop the algorithms for rendering bimanual vibrotactile feedback as well as Dvihastīya authoring tool.
-
-#### User Studies
-
-For running the user studies:
-+ Attach the script on a game object.
-+ Toggle the game object on in the inspector.
-+ After attaching the script you will see a default sequence of conditions which can be changed as desired.
-+ Add lefthandcontroller and righthandcontroller object in the dedicated areas.
-+ Run the scene.
-+ Note: No visuals were used for the user studies.
 
 #### Dvihastīya Authoring Tool
 
