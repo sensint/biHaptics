@@ -70,7 +70,7 @@ The same Unity project was used to conduct all user studies. The experimental fl
 
 ##### Setup Instructions
 
-1. **Attach the Script:** Attach the user-study script (Exp1aFinal.cs for study 1; Exp2_v1.cs for study 2) to a GameObject in the scene.
+1. **Attach the Script:** Attach the user-study script (`Exp1aFinal.cs for study 1; Exp2_v1.cs for study 2`) to a GameObject in the scene.
 
 2. **Enable the GameObject:** Toggle the GameObject **on** in the Unity Inspector to activate the study logic.
 
@@ -91,10 +91,27 @@ The same Unity project was used to conduct all user studies. The experimental fl
 - No visual feedback was used during the user studies.
 - All interactions were conveyed exclusively through vibrotactile feedback.
 
-#### Dvihastīya Authoring Tool
+### Dvihastīya Authoring Tool
+The Dvihastīya Authoring Tool enables interactive authoring and tuning of crosstalk-based bimanual vibrotactile feedback parameters within the VR environment.
 
-To enable the authoring tool, please use the following steps:
-+ For visually rendering the rubber-band, pool-noodle, and braided-wire, [obirope](https://assetstore.unity.com/packages/tools/physics/obi-rope-55579?aid=1011l34eQ) was used.
+1. **Load the Scene:** Open `SampleScene.unity` located at: `Unity/Assets/Scenes`.
+
+2. **Verify Tool Initialization:** The authoring tool is automatically loaded when the scene starts.
+
+3. **Interact Using the VR Controller:**
+- Use the controller’s raycast to point at elements of the authoring tool.
+- Press the `Trigger` button to select and adjust authoring parameters.
+
+4. **Tune Vibrotactile Parameters:**
+- *Leader hand parameters* control the vibration characteristics of the actively moving hand.
+- *Crosstalk* controls the proportion of dominant-hand vibration parameters applied to the follower or less-active hand.
+
+5. **Visual Rendering of Connections:** For visually rendering the rubber-band, pool-noodle, and braided-wire metaphors, the project uses **Obi Rope**: [Obi Rope (Unity Asset Store)](https://assetstore.unity.com/packages/tools/physics/obi-rope-55579?aid=1011l34eQ)
+
+6. **Object Selection and Attachment**
+- Press the **`Grip`** button on the left or right controller to select an object.
+- This action attaches one end of the object to the corresponding controller.
+- Press the **`Grip`** button on the other controller to attach the second end.
 
 ## Hardware
 
